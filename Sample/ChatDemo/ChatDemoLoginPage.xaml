@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ChatDemo" x:Class="ChatDemo.ChatDemoLoginPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="20" x:Name="layout" VerticalOptions="Center">
+            <Label 
+                Text="Welcome to Twilio Chat Demo!" 
+                FontSize="Large"
+                FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="Start"/>
+            <Entry 
+                x:Name="identityEntry" 
+                Placeholder="Identity" 
+                Keyboard="Default" 
+                HorizontalOptions="FillAndExpand"  />
+            <Entry 
+                x:Name="tokenProviderUrlEntry" 
+                Placeholder="Token Provider URL" 
+                Keyboard="Url" 
+                HorizontalOptions="FillAndExpand"  />
+            <Button 
+                x:Name="loginButton" 
+                Text="Login" 
+                VerticalOptions="End" 
+                HorizontalOptions="FillAndExpand" />
+            <ActivityIndicator x:Name="activityIndicator" IsRunning="false" VerticalOptions="Center" HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

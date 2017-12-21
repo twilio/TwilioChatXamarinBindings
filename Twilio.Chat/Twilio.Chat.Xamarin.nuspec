@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Twilio.Chat.Xamarin</id>
+    <version>0.1.0</version>
+    <title>Twilio Programmable Chat for Xamarin</title>
+    <authors>Twilio</authors>
+    <owners>twilio</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Twilio Programmable Chat makes it easy for you to add chat features into your mobile applications without building or scaling a real-time backend</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Twilio Chat</tags>
+  </metadata>
+  <files>
+
+     <!-- Android -->
+     <file src="./Twilio.Chat.Android/bin/Release/Twilio.Chat.Android.*" target="lib/MonoAndroid44" />
+    
+     <!-- iOS -->
+     <file src="./Twilio.Chat.iOS/bin/Release/Twilio.Chat.iOS.*" target="lib/Xamarin.iOS9" />
+
+   </files>
+</package>

@@ -1,0 +1,46 @@
+apply plugin : 'java'
+
+def chatAndroidVersion = '2.0.5'
+
+repositories {
+    jcenter()
+}
+
+configurations {
+    aar
+    docs
+}
+
+configurations.all {
+    transitive = false
+}
+
+dependencies {
+    aar group: 'com.twilio', name:'chat-android', version: "$chatAndroidVersion"
+    docs group: 'com.twilio', name:'chat-android', classifier: 'javadoc', version: "$chatAndroidVersion"
+}
+
+clean() {
+    delete 'Javadoc', fileTree('Jars') { include '**/*.aar' }
+}
+
+task copyAndRenameAar(type: Copy) {
+    from file(configurations.aar.singleFile)
+    into 'Jars'
+    rename { 'chat-android.aar' }
+}
+
+task copyAndExtractJavaDoc(type: Copy) {
+    from zipTree(configurations.docs.singleFile)
+    into "Javadoc"
+}
+
+task allDeps(type: DependencyReportTask) {
+    configurations = [project.configurations.aar, project.configurations.docs]
+}
+task fetch(){
+    dependsOn clean
+    dependsOn allDeps
+    dependsOn copyAndRenameAar
+    dependsOn copyAndExtractJavaDoc
+}

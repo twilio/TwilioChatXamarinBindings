@@ -1,0 +1,104 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Chat.Android", "Twilio.Chat\Twilio.Chat.Android\Twilio.Chat.Android.csproj", "{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Twilio.Chat", "Twilio.Chat", "{51BEDB3A-656D-4C58-811F-7A51EDD21972}"
+	ProjectSection(SolutionItems) = preProject
+		Twilio.Chat\Twilio.Chat.Xamarin.nuspec = Twilio.Chat\Twilio.Chat.Xamarin.nuspec
+		Twilio.Chat\nugetBuildAndPack.sh = Twilio.Chat\nugetBuildAndPack.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{48A71AEF-2F4B-4EE6-81D1-AC44FF967F79}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChatDemo", "Sample\ChatDemo\ChatDemo.shproj", "{83226E49-B483-446A-887D-B2CFFC1142C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatDemo.Droid", "Sample\ChatDemo.Droid\ChatDemo.Droid.csproj", "{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChatDemo.Shared", "Sample\ChatDemo.Shared\ChatDemo.Shared.shproj", "{30BACF71-8A1C-4064-9BF2-97A534409160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Chat.iOS", "Twilio.Chat\Twilio.Chat.iOS\Twilio.Chat.iOS.csproj", "{3F881782-1B64-421F-861A-4BABF118A1CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatDemo.iOS", "Sample\ChatDemo.iOS\ChatDemo.iOS.csproj", "{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Any CPU = Default|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Release|iPhone.Build.0 = Release|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Release|iPhone.Build.0 = Release|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Release|iPhone.Build.0 = Release|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3F881782-1B64-421F-861A-4BABF118A1CD}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Default|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Default|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Release|Any CPU.Build.0 = Release|iPhone
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Release|iPhone.ActiveCfg = Release|iPhone
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Release|iPhone.Build.0 = Release|iPhone
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B83C6C8-49AB-45B4-8F35-52F38BD2FACC} = {51BEDB3A-656D-4C58-811F-7A51EDD21972}
+		{83226E49-B483-446A-887D-B2CFFC1142C9} = {48A71AEF-2F4B-4EE6-81D1-AC44FF967F79}
+		{100D5008-6D0A-4B1C-8F9B-AD35FBB90C56} = {48A71AEF-2F4B-4EE6-81D1-AC44FF967F79}
+		{30BACF71-8A1C-4064-9BF2-97A534409160} = {48A71AEF-2F4B-4EE6-81D1-AC44FF967F79}
+		{3F881782-1B64-421F-861A-4BABF118A1CD} = {51BEDB3A-656D-4C58-811F-7A51EDD21972}
+		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368} = {48A71AEF-2F4B-4EE6-81D1-AC44FF967F79}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 0.1.0
+		description = Twilio Programmable Chat for Xamarin
+	EndGlobalSection
+EndGlobal

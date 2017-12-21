@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <!--   Messages.LastConsumedMessageIndex should return "long?" (new property declared in Additions/Messages.cs) -->	
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastConsumedMessageIndex' and count(parameter)=0]" name="propertyName"></attr>
+	<attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastConsumedMessageIndex' and count(parameter)=0]" name="visibility">private</attr>
+
+    <!--   ChatClient.setLogLevel should accept c#-like enum LogLevel instead of int (new method declared in Additions/ChatClient.cs) --> 
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='setLogLevel' and count(parameter)=1 and parameter[1][@type='int']]" name="visibility">private</attr>
+
+	<!--    remove deprecated methods - this is first releast of Xamarin bindings --> 
+	<remove-node path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='advanceLastConsumedMessageIndex' and count(parameter)=1 and parameter[1][@type='long']]"/>
+	<remove-node path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='setAllMessagesConsumed' and count(parameter)=0]"/>
+    <remove-node path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='setLastConsumedMessageIndex' and count(parameter)=1 and parameter[1][@type='long']]"/>
+    <remove-node path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='setNoMessagesConsumed' and count(parameter)=0]"/>
+
+	<!--    missing eventName -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='addListener']" name="eventName">Channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='setListener']" name="eventName">ChatClient</attr> 
+
+    <!--    resolve class naming and generated property naming conflicts-->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.ConnectionState']" name="managedName">ChatClient.ClientConnectionState</attr> 
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.Properties']" name="managedName">ChatClient.ClientProperties</attr> 
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel.SynchronizationStatus']" name="managedName">Channel.ChannelSynchronizationStatus</attr> 
+	<attr path="/api/package[@name='com.twilio.chat']/class[@name='Message.Type']" name="managedName">Message.MessageType</attr> 
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Message.Media']" name="managedName">Message.MessageMedia</attr> 
+	<attr path="/api/package[@name='com.twilio.chat']/class[@name='NotificationPayload.Type']" name="managedName">NotificationPayload.NotificationPayloadType</attr> 
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Paginator']" name="managedName">InternalPaginator</attr> 
+    
+	<!--    ChatClient :: CallbackListener generics  -->
+	<attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='create' and count(parameter)=4 and parameter[4][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.ChatClient&gt;']]/parameter[4]" 
+	    name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.ChatClient&gt;</attr>
+
+	<!--    Channel :: CallbackListener generics  -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='getMembersCount' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='getMessagesCount' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='getUnconsumedMessagesCount' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+
+	<!--    ChannelDescriptor :: CallbackListener generics  -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChannelDescriptor']/method[@name='getChannel' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Channel&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Channel&gt;</attr>
+	
+	<!--    Channels :: CallbackListener generics  -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channels']/method[@name='createChannel' and count(parameter)=3 and parameter[3][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Channel&gt;']]/parameter[3]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Channel&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channels']/method[@name='getChannel' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Channel&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Channel&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channels']/method[@name='getPublicChannelsList' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Paginator&lt;com.twilio.chat.ChannelDescriptor&gt;&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Paginator&lt;Com.Twilio.Chat.ChannelDescriptor&gt;&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channels']/method[@name='getUserChannelsList' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Paginator&lt;com.twilio.chat.ChannelDescriptor&gt;&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Paginator&lt;Com.Twilio.Chat.ChannelDescriptor&gt;&gt;</attr>
+
+    <!--    Member :: CallbackListener generics  -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Member']/method[@name='getAndSubscribeUser' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.User&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.User&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Member']/method[@name='getUserDescriptor' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.UserDescriptor&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.UserDescriptor&gt;</attr>
+
+    <!--    Messages :: CallbackListener generics  -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='advanceLastConsumedMessageIndexWithResult' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getMessageByIndex' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Message&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Message&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='sendMessage' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Message&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Message&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='setAllMessagesConsumedWithResult' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='setLastConsumedMessageIndexWithResult' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='setNoMessagesConsumedWithResult' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastMessages' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;java.util.List&lt;com.twilio.chat.Message&gt;&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;System.Collections.Generic.IList&lt;Com.Twilio.Chat.Message&gt;&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getMessagesAfter' and count(parameter)=3 and parameter[3][@type='com.twilio.chat.CallbackListener&lt;java.util.List&lt;com.twilio.chat.Message&gt;&gt;']]/parameter[3]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;System.Collections.Generic.IList&lt;Com.Twilio.Chat.Message&gt;&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getMessagesBefore' and count(parameter)=3 and parameter[3][@type='com.twilio.chat.CallbackListener&lt;java.util.List&lt;com.twilio.chat.Message&gt;&gt;']]/parameter[3]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;System.Collections.Generic.IList&lt;Com.Twilio.Chat.Message&gt;&gt;</attr>
+
+    <!--    Users :: CallbackListener generics  -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Users']/method[@name='getAndSubscribeUser' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.User&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.User&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Users']/method[@name='getUserDescriptor' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.UserDescriptor&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.UserDescriptor&gt;</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Users']/method[@name='getChannelUserDescriptors' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Paginator&lt;com.twilio.chat.UserDescriptor&gt;&gt;']]/parameter[2]" 
+        name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Paginator&lt;Com.Twilio.Chat.UserDescriptor&gt;&gt;</attr>
+</metadata>

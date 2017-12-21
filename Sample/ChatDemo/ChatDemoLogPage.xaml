@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ChatDemo.ChatDemoLogPage">
+    <ContentPage.Content>
+        <ListView x:Name="LogListView" ItemsSource="{Binding LogLines}" HasUnevenRows="true" RowHeight="-1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="5" Padding="3">
+                            <Label FontAttributes="Bold" Text="{Binding Source}" LineBreakMode="WordWrap" />
+                            <Label FontAttributes="Italic" Text="{Binding DateTime}" LineBreakMode="WordWrap" />
+                            <Label Text="{Binding Text}" LineBreakMode="WordWrap" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

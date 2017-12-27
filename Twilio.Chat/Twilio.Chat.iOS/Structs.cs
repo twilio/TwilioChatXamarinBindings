@@ -66,8 +66,8 @@ namespace Twilio.Chat.iOS
     [Native]
     public enum ChannelType : ulong
     {
-        ublic = 0,
-        rivate
+        Public = 0,
+        Private
     }
 
     [Native]

@@ -22,20 +22,17 @@ namespace ChatDemo.iOS.Delegates
 
         public override void MemberJoined(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"MemberJoined: {member.Identity}");
+            Logger.Info($"Channel: {channel.Sid}", $"MemberJoined: {member.Sid}");
         }
 
         public override void MemberUpdated(TwilioChatClient client, Channel channel, Member member, MemberUpdate updated)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"MemberUpdated: {member.Identity}, reason: {updated}");
+            Logger.Info($"Channel: {channel.Sid}", $"MemberUpdated: {member.Sid}, reason: {updated}");
         }
 
         public override void MemberLeft(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"MemberLeft: {member.Identity}");
+            Logger.Info($"Channel: {channel.Sid}", $"MemberLeft: {member.Sid}");
         }
 
         public override void MessageAdded(TwilioChatClient client, Channel channel, Message message)
@@ -55,32 +52,27 @@ namespace ChatDemo.iOS.Delegates
 
         public override void TypingStartedOnChannel(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"TypingStartedOnChannel: {member.Identity}");
+            Logger.Info($"Channel: {channel.Sid}", $"TypingStartedOnChannel: {member.Sid}");
         }
 
         public override void TypingEndedOnChannel(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"TypingEndedOnChannel: {member.Identity}");
+            Logger.Info($"Channel: {channel.Sid}", $"TypingEndedOnChannel: {member.Sid}");
         }
 
         public override void UserUpdated(TwilioChatClient client, Channel channel, Member member, User user, UserUpdate updated)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"UserUpdated: {user.Identity}, member: {member.Identity}, reason: {updated}");
+            Logger.Info($"Channel: {channel.Sid}", $"UserUpdated: {user.Identity}, member: {member.Sid}, reason: {updated}");
         }
 
         public override void UserSubscribed(TwilioChatClient client, Channel channel, Member member, User user)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"UserSubscribed: {user.Identity}, member: {member.Identity}");
+            Logger.Info($"Channel: {channel.Sid}", $"UserSubscribed: {user.Identity}, member: {member.Sid}");
         }
 
         public override void UserUnsubscribed(TwilioChatClient client, Channel channel, Member member, User user)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"Channel: {channel.Sid}", $"UserUnsubscribed: {user.Identity}, member: {member.Identity}");
+            Logger.Info($"Channel: {channel.Sid}", $"UserUnsubscribed: {user.Identity}, member: {member.Sid}");
         }
 
     }

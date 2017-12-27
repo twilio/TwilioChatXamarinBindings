@@ -20,6 +20,7 @@ MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Debug
 MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Release
 cd Twilio.Chat.iOS
 rm -rf Pods
+rm -rf Binding
 cd -
 
 # fetch artifacts for android 
@@ -37,6 +38,9 @@ MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Debug
 MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Release
 
 # build ios project
+cd Twilio.Chat.iOS
+sharpie pod bind
+cd -
 MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Debug
 MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Release
 

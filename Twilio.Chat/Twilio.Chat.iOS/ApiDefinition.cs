@@ -287,6 +287,10 @@ namespace Twilio.Chat.iOS
     [BaseType(typeof(NSObject), Name = "TCHMember")]
     interface Member
     {
+    	// @property (readonly, copy, nonatomic) NSString * _Nullable sid;
+    	[NullAllowed, Export ("sid")]
+    	string Sid { get; }
+
         // @property (readonly, nonatomic, strong) NSString * _Nullable identity;
         [NullAllowed, Export("identity", ArgumentSemantic.Strong)]
         string Identity { get; }
@@ -850,6 +854,18 @@ namespace Twilio.Chat.iOS
         [Export("chatClient:notificationNewMessageReceivedForChannelSid:messageIndex:")]
         void NotificationNewMessageReceivedForChannelSid(TwilioChatClient client, string channelSid, nuint messageIndex);
 
+    	// @optional -(void)chatClient:(TwilioChatClient * _Nonnull)client notificationAddedToChannelWithSid:(NSString * _Nonnull)channelSid;
+    	[Export ("chatClient:notificationAddedToChannelWithSid:")]
+    	void NotificationAddedToChannelWithSid (TwilioChatClient client, string channelSid);
+
+    	// @optional -(void)chatClient:(TwilioChatClient * _Nonnull)client notificationInvitedToChannelWithSid:(NSString * _Nonnull)channelSid;
+    	[Export ("chatClient:notificationInvitedToChannelWithSid:")]
+    	void NotificationInvitedToChannelWithSid (TwilioChatClient client, string channelSid);
+
+    	// @optional -(void)chatClient:(TwilioChatClient * _Nonnull)client notificationRemovedFromChannelWithSid:(NSString * _Nonnull)channelSid;
+    	[Export ("chatClient:notificationRemovedFromChannelWithSid:")]
+    	void NotificationRemovedFromChannelWithSid (TwilioChatClient client, string channelSid);
+        
         // @optional -(void)chatClient:(TwilioChatClient * _Nonnull)client notificationUpdatedBadgeCount:(NSUInteger)badgeCount;
         [Export("chatClient:notificationUpdatedBadgeCount:")]
         void NotificationUpdatedBadgeCount(TwilioChatClient client, nuint badgeCount);

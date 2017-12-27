@@ -100,20 +100,17 @@ namespace ChatDemo.iOS.Delegates
 
         public override void MemberJoined(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberJoined: {member.Identity}");
+            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberJoined: {member.Sid}");
         }
 
         public override void MemberUpdated(TwilioChatClient client, Channel channel, Member member, MemberUpdate updated)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberUpdated: {member.Identity}, reason: {updated}");
+            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberUpdated: {member.Sid}, reason: {updated}");
         }
 
         public override void MemberLeft(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberLeft: {member.Identity}");
+            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberLeft: {member.Sid}");
         }
 
         public override void MessageAdded(TwilioChatClient client, Channel channel, Message message)
@@ -149,20 +146,32 @@ namespace ChatDemo.iOS.Delegates
 
         public override void TypingStartedOnChannel(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} TypingStartedOnChannel: {member.Identity}");
+            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} TypingStartedOnChannel: {member.Sid}");
         }
 
         public override void TypingEndedOnChannel(TwilioChatClient client, Channel channel, Member member)
         {
-            //TODO: member doesn't have Sid ?
-            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} TypingEndedOnChannel: {member.Identity}");
+            Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} TypingEndedOnChannel: {member.Sid}");
         }
 
         public override void NotificationNewMessageReceivedForChannelSid(TwilioChatClient client, string channelSid, nuint messageIndex)
         {
-            //TODO: why index and not sid ?
             Logger.Info($"ChatClient: {client}", $"NotificationNewMessageReceivedForChannelSid: ChannelSid: {channelSid}, MessageIndex: {messageIndex}");
+        }
+
+        public override void NotificationAddedToChannelWithSid(TwilioChatClient client, string channelSid)
+        {
+            Logger.Info($"ChatClient: {client}", $"NotificationAddedToChannelWithSid: ChannelSid: {channelSid}");
+        }
+
+        public override void NotificationInvitedToChannelWithSid(TwilioChatClient client, string channelSid)
+        {
+            Logger.Info($"ChatClient: {client}", $"NotificationInvitedToChannelWithSid: ChannelSid: {channelSid}");
+        }
+
+        public override void NotificationRemovedFromChannelWithSid(TwilioChatClient client, string channelSid)
+        {
+            Logger.Info($"ChatClient: {client}", $"NotificationRemovedFromChannelWithSid: ChannelSid: {channelSid}");
         }
 
         public override void NotificationUpdatedBadgeCount(TwilioChatClient client, nuint badgeCount)

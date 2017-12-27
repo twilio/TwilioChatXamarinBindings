@@ -43,8 +43,9 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="Pods\TwilioChatClient\TwilioChatClient.framework">
+    <NativeReference Include="Binding\TwilioChatClient.framework">
       <Kind>Framework</Kind>
+      <ForceLoad>True</ForceLoad>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />

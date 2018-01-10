@@ -13,6 +13,7 @@ MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration
 MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration=Release
 cd Twilio.Chat.Android
 gradle clean
+rm -rf bin
 cd -
 
 # clean ios build
@@ -21,6 +22,7 @@ MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Release
 cd Twilio.Chat.iOS
 rm -rf Pods
 rm -rf Binding
+rm -rf bin
 cd -
 
 # fetch artifacts for android 

@@ -47,4 +47,4 @@ MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Debug
 MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Release
 
 # package for nuget
-nuget pack Twilio.Chat.Xamarin.nuspec -Verbosity detailed -Version 0.0.2.0
+nuget pack Twilio.Chat.Xamarin.nuspec -Verbosity detailed

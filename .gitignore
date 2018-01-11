@@ -20,3 +20,4 @@ Twilio.Chat/Twilio.Chat.iOS/obj
 Twilio.Chat/Twilio.Chat.iOS/Pods
 Twilio.Chat/Twilio.Chat.Android/.gradle
 Sample/ChatDemo.iOS/certificates
+UserPrefs.xml

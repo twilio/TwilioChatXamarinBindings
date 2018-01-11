@@ -18,12 +18,13 @@
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <PackageId>Twilio.Chat.Android</PackageId>
-    <PackageVersion>0.0.1</PackageVersion>
+    <PackageVersion>0.1.0</PackageVersion>
     <Authors>Twilio</Authors>
-    <Owners>Twilio</Owners>
+    <Owners>twilio</Owners>
     <Summary>Twilio Programmable Chat makes it easy for you to add chat features into your mobile applications without building or scaling a real-time backend</Summary>
     <Title>Twilio Programmable Chat for Xamarin</Title>
     <Description>Twilio Programmable Chat Library for Xamarin</Description>
+    <ReleaseVersion>0.1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,7 +78,7 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <JavaDocIndex Include="Javadoc\index.html" />
+    <JavaDocIndex Include="Javadoc\" />
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="Jars\chat-android.aar" />

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Twilio.Chat.Xamarin</id>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <title>Twilio Programmable Chat for Xamarin</title>
     <authors>Twilio</authors>
     <owners>rtd-sdk-xamarin, twilio</owners>
@@ -14,7 +14,7 @@
     <iconUrl>https://www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico</iconUrl>
     <projectUrl>https://github.com/twilio/TwilioChatXamarinBindings</projectUrl>
     <licenseUrl>https://github.com/twilio/TwilioChatXamarinBindings/blob/master/LICENSE.md</licenseUrl>
-    <releaseNotes>initial release of Twilio Chat Bindings (using Programmable Chat iOS 2.2.0 and Programmable Chat Android 2.0.5)</releaseNotes>
+    <releaseNotes>Twilio Chat Bindings (using Programmable Chat iOS 2.2.0 and Programmable Chat Android 2.0.5)</releaseNotes>
   </metadata>
   <files>
 
@@ -22,7 +22,7 @@
      <file src="./Twilio.Chat.Android/bin/Release/Twilio.Chat.Android.*" target="lib/MonoAndroid44" />
     
      <!-- iOS -->
-     <file src="./Twilio.Chat.iOS/bin/Release/Twilio.Chat.iOS.*" target="lib/Xamarin.iOS9" />
+     <file src="./Twilio.Chat.iOS/bin/Release/Twilio.Chat.iOS.*" target="lib/Xamarin.iOS" />
 
    </files>
 </package>

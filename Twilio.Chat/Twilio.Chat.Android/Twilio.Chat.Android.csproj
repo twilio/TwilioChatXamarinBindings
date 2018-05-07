@@ -24,7 +24,7 @@
     <Summary>Twilio Programmable Chat makes it easy for you to add chat features into your mobile applications without building or scaling a real-time backend</Summary>
     <Title>Twilio Programmable Chat for Xamarin</Title>
     <Description>Twilio Programmable Chat Library for Xamarin</Description>
-    <ReleaseVersion>0.1.2</ReleaseVersion>
+    <ReleaseVersion>0.2.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -86,5 +86,5 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.1\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.1\build\NuGet.Build.Packaging.targets')" />
   <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
-  <Import Project="..\..\packages\NuGet.Build.Tasks.Pack.4.5.0\build\NuGet.Build.Tasks.Pack.targets" Condition="Exists('..\..\packages\NuGet.Build.Tasks.Pack.4.5.0\build\NuGet.Build.Tasks.Pack.targets')" />
+  <Import Project="..\..\packages\NuGet.Build.Tasks.Pack.4.6.2\build\NuGet.Build.Tasks.Pack.targets" Condition="Exists('..\..\packages\NuGet.Build.Tasks.Pack.4.6.2\build\NuGet.Build.Tasks.Pack.targets')" />
 </Project>

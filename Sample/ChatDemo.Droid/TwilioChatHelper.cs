@@ -92,7 +92,11 @@ namespace ChatDemo.Droid
 
             client.Error += (sender, args) => { Logger.Info($"ChatClient: {client}", $"Error: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
 
-            client.Notification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"Notification: ChannelSid: {args.ChannelSid}, MessageSid: {args.MessageSid}"); };
+            client.NewMessageNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NewMessageNotification: ChannelSid: {args.ChannelSid}, MessageSid: {args.MessageSid}"); };
+            client.AddedToChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"AddedToChannelNotification: ChannelSid: {args.ChannelSid}"); };
+            client.InvitedToChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"InvitedToChannelNotification: ChannelSid: {args.ChannelSid}"); };
+            client.RemovedFromChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"RemovedFromChannelNotification: ChannelSid: {args.ChannelSid}"); };
+                  
             client.NotificationFailed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationFailed: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
             client.NotificationSubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationSubscribed"); };
 
@@ -121,8 +125,8 @@ namespace ChatDemo.Droid
             channel.MessageUpdated += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MessageUpdated: {args.Message.Sid}, reason: {args.Reason.Name()}"); };
 
 
-            channel.TypingEnded += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"TypingEnded: {args.Member.Sid}"); };
-            channel.TypingStarted += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"TypingStarted: {args.Member.Sid}"); };
+            channel.TypingEnded += (sender, args) => { Logger.Info($"Channel: {args.Channel.Sid}", $"TypingEnded: {args.Member.Sid}"); };
+            channel.TypingStarted += (sender, args) => { Logger.Info($"Channel: {args.Channel.Sid}", $"TypingStarted: {args.Member.Sid}"); };
         }
 
         public TokenProvider GetTokenProvider()

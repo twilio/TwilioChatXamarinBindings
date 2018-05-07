@@ -1,6 +1,6 @@
 apply plugin : 'java'
 
-def chatAndroidVersion = '2.0.6'
+def chatAndroidVersion = '3.0.0'
 
 repositories {
     jcenter()

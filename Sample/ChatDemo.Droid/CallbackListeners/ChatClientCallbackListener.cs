@@ -27,7 +27,8 @@ namespace ChatDemo.Droid
 
             this.twilioChatHelper.SubscribeToClientEvents(result);
 
-            foreach (Channel channel in result.Channels.SubscribedChannels)
+            var subscribedChannels = result.Channels.GetSubscribedChannelsSortedBy(Channels.SortCriterion.LastMessage, Channels.SortOrder.Descending);
+            foreach (Channel channel in subscribedChannels)
             {
                 Logger.Info($"ChatClient: {result}", $"Got user channel: {channel.Sid}");
 

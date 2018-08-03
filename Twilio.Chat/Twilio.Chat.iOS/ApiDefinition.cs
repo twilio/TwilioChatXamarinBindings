@@ -114,6 +114,10 @@ namespace Twilio.Chat.iOS
         [Export("subscribedChannels")]
         Channel[] SubscribedChannels { get; }
 
+        // -(NSArray<TCHChannel *> * _Nonnull)subscribedChannelsSortedBy:(TCHChannelSortingCriteria)criteria order:(TCHChannelSortingOrder)order;
+        [Export("subscribedChannelsSortedBy:order:")]
+        Channel[] SubscribedChannelsSortedBy(ChannelSortingCriteria criteria, ChannelSortingOrder order);
+
         // -(void)userChannelDescriptorsWithCompletion:(TCHChannelDescriptorPaginatorCompletion _Nonnull)completion;
         [Export("userChannelDescriptorsWithCompletion:")]
         void UserChannelDescriptorsWithCompletion(ChannelDescriptorPaginatorCompletion completion);
@@ -442,6 +446,14 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("dateUpdatedAsDate", ArgumentSemantic.Strong)]
         NSDate DateUpdatedAsDate { get; }
 
+        // @property (readonly, nonatomic, strong) NSDate * _Nullable lastMessageDate;
+        [NullAllowed, Export("lastMessageDate", ArgumentSemantic.Strong)]
+        NSDate LastMessageDate { get; }
+
+        // @property (readonly, nonatomic, strong) NSNumber * _Nullable lastMessageIndex;
+        [NullAllowed, Export("lastMessageIndex", ArgumentSemantic.Strong)]
+        NSNumber LastMessageIndex { get; }
+
         // -(NSDictionary<NSString *,id> * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
         NSDictionary<NSString, NSObject> Attributes { get; }
@@ -739,9 +751,15 @@ namespace Twilio.Chat.iOS
         [Export("chatClientWithToken:properties:delegate:completion:")]
         void ChatClientWithToken(string token, [NullAllowed] TwilioChatClientProperties properties, [NullAllowed] TwilioChatClientDelegate @delegate, TwilioClientCompletion completion);
 
-        // -(NSString * _Nonnull)version;
-        [Export("version")]
-        string Version { get; }
+        // +(NSString * _Nonnull)sdkName;
+        [Static]
+        [Export("sdkName")]
+        string SdkName { get; }
+
+        // +(NSString * _Nonnull)sdkVersion;
+        [Static]
+        [Export("sdkVersion")]
+        string SdkVersion { get; }
 
         // -(void)updateToken:(NSString * _Nonnull)token completion:(TCHCompletion _Nullable)completion;
         [Export("updateToken:completion:")]

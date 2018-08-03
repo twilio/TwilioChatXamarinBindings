@@ -18,6 +18,10 @@ namespace ChatDemo.iOS.Delegates
         public override void SynchronizationStatusUpdated(TwilioChatClient client, ClientSynchronizationStatus status)
         {
             Logger.Info($"ChatClient: {client}", $"SynchronizationStatusUpdated: {status}");
+            if (status.Equals(ClientSynchronizationStatus.Completed)) 
+            {
+                client.ChannelsList.SubscribedChannelsSortedBy(ChannelSortingCriteria.LastMessage, ChannelSortingOrder.Ascending);
+            }
         }
 
         public override void ChannelAdded(TwilioChatClient client, Channel channel)
@@ -73,7 +77,7 @@ namespace ChatDemo.iOS.Delegates
                         Logger.Info($"Channel: {channel.Sid}", $"Messages: {result}");
                         foreach (Message message in messages)
                         {
-                            Logger.Info($"Channel: {channel.Sid}", $"Got message: {message.Sid}");
+                            Logger.Info($"Channel: {channel.Sid}", $"Got message: {message.Sid} created on {message.TimestampAsDate}");
                         };
                     }
                     else

@@ -27,7 +27,8 @@ namespace Twilio.Chat.iOS
     [Native]
     public enum LogLevel : ulong
     {
-        Fatal = 0,
+		Silent = 0,
+        Fatal,
         Critical,
         Warning,
         Info,
@@ -41,7 +42,8 @@ namespace Twilio.Chat.iOS
         LastConsumedMessageIndex,
         UniqueName,
         FriendlyName,
-        Attributes
+		Attributes,
+        LastMessage
     }
 
     [Native]
@@ -68,6 +70,21 @@ namespace Twilio.Chat.iOS
     {
         Public = 0,
         Private
+    }
+
+	[Native]
+    public enum ChannelSortingCriteria : ulong
+    {
+        LastMessage = 0,
+        FriendlyName,
+        UniqueName
+    }
+
+    [Native]
+	public enum ChannelSortingOrder : ulong
+    {
+        Ascending = 0,
+        Descending
     }
 
     [Native]

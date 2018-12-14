@@ -42,6 +42,7 @@ namespace ChatDemo.iOS.Delegates
             {
                 Logger.Info($"ChatClient: {client}", $"Got joined channel: {channel.Sid}");
                 channel.Delegate = new TwilioChannelDelegate();
+                Logger.Info($"Channel: {channel.Sid}", $"Notification level: {channel.NotificationLevel}");
                 channel.GetMessagesCountWithCompletion((result, count) =>
                 {
                     if (result.IsSuccessful)

@@ -1,6 +1,6 @@
-platform :ios, '11.1'
+platform :ios, '11.4'
 install! 'cocoapods', :integrate_targets => false
 target 'ObjectiveSharpieIntegration' do
   use_frameworks!
 end
-pod 'TwilioChatClient', '2.3.3'
+pod 'TwilioChatClient', '2.4.2'

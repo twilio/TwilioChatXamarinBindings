@@ -111,8 +111,10 @@ namespace ChatDemo.Droid
         public void SubscribeToChannelEvents(Channel channel)
         {
             Logger.Info($"Channel: {channel.Sid}", $"SynchronizationChanged: {channel.SynchronizationStatus.Name()}");
+            Logger.Info($"Channel: {channel.Sid}", $"Type: { channel.Type.Name() }");
+            Logger.Info($"Channel: {channel.Sid}", $"Status: { channel.Status.Name() }");
             Logger.Info($"Channel: {channel.Sid}", $"LastConsumedMessageIndex: {channel.Messages.LastConsumedMessageIndex}");
-            Logger.Info($"Channel: {channel.Sid}", $"NotificationLevel: {channel.GetNotificationLevel()}");
+            Logger.Info($"Channel: {channel.Sid}", $"NotificationLevel: {channel.NotificationLevel.Name()}");
 
             channel.GetMessagesCount(new MessagesCountCallbackListener(channel));
             channel.GetMembersCount(new MembersCountCallbackListener(channel));

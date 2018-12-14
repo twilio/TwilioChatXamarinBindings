@@ -8,11 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Gms.Common;
-using Firebase.Messaging;
-using Firebase.Iid;
-using Android.Util;
 using ChatDemo.Shared;
-using Firebase;
 
 namespace ChatDemo.Droid
 {

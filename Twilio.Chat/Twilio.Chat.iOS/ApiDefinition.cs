@@ -422,6 +422,10 @@ namespace Twilio.Chat.iOS
         [Export("status", ArgumentSemantic.Assign)]
         ChannelStatus Status { get; }
 
+        // @property (readonly, assign, nonatomic) TCHChannelNotificationLevel notificationLevel;
+        [Export("notificationLevel", ArgumentSemantic.Assign)]
+        ChannelNotificationLevel NotificationLevel { get; }
+
         // @property (readonly, assign, nonatomic) TCHChannelType type;
         [Export("type", ArgumentSemantic.Assign)]
         ChannelType Type { get; }
@@ -469,6 +473,10 @@ namespace Twilio.Chat.iOS
         // -(void)setUniqueName:(NSString * _Nullable)uniqueName completion:(TCHCompletion _Nullable)completion;
         [Export("setUniqueName:completion:")]
         void SetUniqueName([NullAllowed] string uniqueName, [NullAllowed] Completion completion);
+
+        // -(void)setNotificationLevel:(TCHChannelNotificationLevel)notificationLevel completion:(TCHCompletion _Nullable)completion;
+        [Export("setNotificationLevel:completion:")]
+        void SetNotificationLevel(ChannelNotificationLevel notificationLevel, [NullAllowed] Completion completion);
 
         // -(void)joinWithCompletion:(TCHCompletion _Nullable)completion;
         [Export("joinWithCompletion:")]
@@ -811,6 +819,14 @@ namespace Twilio.Chat.iOS
         // @optional -(void)chatClient:(TwilioChatClient * _Nonnull)client connectionStateUpdated:(TCHClientConnectionState)state;
         [Export("chatClient:connectionStateUpdated:")]
         void ConnectionStateUpdated(TwilioChatClient client, ClientConnectionState state);
+
+        // @optional -(void)chatClientTokenExpired:(TwilioChatClient * _Nonnull)client;
+        [Export("chatClientTokenExpired:")]
+        void TokenExpired(TwilioChatClient client);
+
+        // @optional -(void)chatClientTokenWillExpire:(TwilioChatClient * _Nonnull)client;
+        [Export("chatClientTokenWillExpire:")]
+        void TokenWillExpire(TwilioChatClient client);
 
         // @optional -(void)chatClient:(TwilioChatClient * _Nonnull)client synchronizationStatusUpdated:(TCHClientSynchronizationStatus)status;
         [Export("chatClient:synchronizationStatusUpdated:")]

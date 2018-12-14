@@ -32,7 +32,8 @@ namespace Twilio.Chat.iOS
         Critical,
         Warning,
         Info,
-        Debug
+        Debug,
+        Trace
     }
 
     [Native]
@@ -43,7 +44,8 @@ namespace Twilio.Chat.iOS
         UniqueName,
         FriendlyName,
 		Attributes,
-        LastMessage
+        LastMessage,
+        UserNotificationLevel
     }
 
     [Native]
@@ -72,7 +74,15 @@ namespace Twilio.Chat.iOS
         Private
     }
 
-	[Native]
+
+    [Native]
+    public enum ChannelNotificationLevel : ulong
+    {
+        Default = 0,
+        Muted
+    }
+
+    [Native]
     public enum ChannelSortingCriteria : ulong
     {
         LastMessage = 0,
@@ -99,7 +109,8 @@ namespace Twilio.Chat.iOS
     [Native]
     public enum MemberUpdate : ulong
     {
-        MemberUpdateLastConsumedMessageIndex = 0
+        LastConsumedMessageIndex = 0,
+        Attributes = 1
     }
 
     [Native]

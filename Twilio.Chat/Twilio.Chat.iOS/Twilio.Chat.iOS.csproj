@@ -18,7 +18,7 @@
     <Summary>Twilio Programmable Chat makes it easy for you to add chat features into your mobile applications without building or scaling a real-time backend</Summary>
     <Title>Twilio Programmable Chat for Xamarin</Title>
     <Description>Twilio Programmable Chat Library for Xamarin</Description>
-    <ReleaseVersion>0.3.0</ReleaseVersion>
+    <ReleaseVersion>0.4.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

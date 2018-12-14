@@ -103,12 +103,16 @@ namespace ChatDemo.Droid
             client.UserSubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserSubscribed: {args.User.Identity}"); };
             client.UserUnsubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserUnsubscribed: {args.User.Identity}"); };
             client.UserUpdated += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserUpdated: {args.User.Identity}, reason: {args.Reason.Name()}"); };
+
+            client.TokenAboutToExpire += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenAboutToExpire"); };
+            client.TokenExpired += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenExpired"); };
         }
 
         public void SubscribeToChannelEvents(Channel channel)
         {
             Logger.Info($"Channel: {channel.Sid}", $"SynchronizationChanged: {channel.SynchronizationStatus.Name()}");
             Logger.Info($"Channel: {channel.Sid}", $"LastConsumedMessageIndex: {channel.Messages.LastConsumedMessageIndex}");
+            Logger.Info($"Channel: {channel.Sid}", $"NotificationLevel: {channel.GetNotificationLevel()}");
 
             channel.GetMessagesCount(new MessagesCountCallbackListener(channel));
             channel.GetMembersCount(new MembersCountCallbackListener(channel));

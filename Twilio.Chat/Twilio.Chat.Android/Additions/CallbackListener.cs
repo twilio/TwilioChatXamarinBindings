@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Com.Twilio.Chat
 {
@@ -11,21 +12,27 @@ namespace Com.Twilio.Chat
 
         private static T Cast(Java.Lang.Object javaObject)
         {
-            if (typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition().Equals(typeof(Paginator<>)) &&
-                javaObject.GetType().Equals(typeof(InternalPaginator)))
+            if (typeof(T).IsGenericType)
             {
-                return (T)(Activator.CreateInstance(typeof(T), Convert.ChangeType(javaObject, typeof(InternalPaginator))));
-            }
+                if (typeof(T).GetGenericTypeDefinition().Equals(typeof(Paginator<>)) &&
+                    javaObject.GetType().Equals(typeof(InternalPaginator)))
+                {
+                    Type genericType = typeof(Paginator<>).MakeGenericType(typeof(T).GetGenericArguments());
+                    ConstructorInfo constructor = genericType.GetConstructor(new Type[] { typeof(InternalPaginator) });
+                    if (constructor == null)
+                    {
+                        throw new InvalidOperationException("Type " + genericType.Name + " does not contain an appropriate constructor");
+                    }
+                    return (T)constructor.Invoke(new object[] { Convert.ChangeType(javaObject, typeof(InternalPaginator)) });
+                 }
 
-            if (typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition().Equals(typeof(IList<>)) &&
-                typeof(T).GetGenericArguments().Length.Equals(1) && 
-                javaObject.GetType().Equals(typeof(Android.Runtime.JavaList))) 
-            {
-                Type genericArgument = typeof(T).GetGenericArguments()[0];
-                Type genericType = typeof(Android.Runtime.JavaList<>).MakeGenericType(genericArgument);
-                return (T)Activator.CreateInstance(genericType, javaObject.Handle, Android.Runtime.JniHandleOwnership.DoNotRegister);
+                if (typeof(T).GetGenericTypeDefinition().Equals(typeof(IList<>)) &&
+                    javaObject.GetType().Equals(typeof(Android.Runtime.JavaList)))
+                {
+                    Type genericType = typeof(Android.Runtime.JavaList<>).MakeGenericType(typeof(T).GetGenericArguments());
+                    return (T)Activator.CreateInstance(genericType, javaObject.Handle, Android.Runtime.JniHandleOwnership.DoNotRegister);
+                }
             }
-
             return (T)Convert.ChangeType(javaObject, typeof(T));
         }
     }

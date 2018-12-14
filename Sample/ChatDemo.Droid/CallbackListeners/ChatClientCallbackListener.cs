@@ -40,7 +40,6 @@ namespace ChatDemo.Droid
                 {
                     channel.SynchronizationChanged += ChannelSynchronizationChanged;
                 }
-    
             }
 
             result.Channels.GetPublicChannelsList(new PublicChannelPaginatorCallbackListener(result));

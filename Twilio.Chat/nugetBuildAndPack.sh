@@ -32,6 +32,7 @@ cd -
 
 # fetch artifacts for ios
 cd Twilio.Chat.iOS
+pod repo update
 pod install
 cd -
 

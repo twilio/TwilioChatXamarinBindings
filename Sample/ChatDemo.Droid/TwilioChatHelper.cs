@@ -120,6 +120,11 @@ namespace ChatDemo.Droid
             channel.GetMembersCount(new MembersCountCallbackListener(channel));
             channel.Messages.GetLastMessages(10, new MessagesCallbackListener(channel));
 
+            foreach (Member member in channel.Members.MembersList)
+            {
+                Logger.Info($"Channel: {channel.Sid}", $"Got member: {member.Sid} with type {member.Type}");
+            }
+
             channel.SynchronizationChanged += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"SynchronizationChanged: {args.Channel.SynchronizationStatus.Name()}"); };
 
             channel.MemberAdded += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MemberAdded: {args.Member.Sid}"); };

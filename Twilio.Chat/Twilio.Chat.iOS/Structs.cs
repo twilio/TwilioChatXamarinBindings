@@ -126,4 +126,15 @@ namespace Twilio.Chat.iOS
         Text = 0,
         Media
     }
+
+    [Native]
+    public enum MemberType : ulong
+    {
+        Unset = 0,
+        Other,
+        Chat,
+        Sms,
+        Whatsapp
+    }
+
 }

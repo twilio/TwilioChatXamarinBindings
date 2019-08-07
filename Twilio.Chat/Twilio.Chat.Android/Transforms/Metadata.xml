@@ -16,6 +16,7 @@
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.Properties']" name="managedName">ChatClient.ClientProperties</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel.SynchronizationStatus']" name="managedName">Channel.ChannelSynchronizationStatus</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel.NotificationLevel']" name="managedName">Channel.ChannelNotificationLevel</attr> 
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Member.Type']" name="managedName">Member.MemberType</attr> 
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='Message.Type']" name="managedName">Message.MessageType</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Message.Media']" name="managedName">Message.MessageMedia</attr> 
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='NotificationPayload.Type']" name="managedName">NotificationPayload.NotificationPayloadType</attr> 

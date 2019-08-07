@@ -157,7 +157,7 @@ namespace Twilio.Chat.iOS
 
         // @property (readonly, assign, nonatomic) TCHMessageType messageType;
         [Export("messageType", ArgumentSemantic.Assign)]
-        MessageType MessageType { get; }
+        MessageType Type { get; }
 
         // @property (readonly, copy, nonatomic) NSString * _Nullable mediaSid;
         [NullAllowed, Export("mediaSid")]
@@ -174,6 +174,14 @@ namespace Twilio.Chat.iOS
         // @property (readonly, copy, nonatomic) NSString * _Nullable mediaFilename;
         [NullAllowed, Export("mediaFilename")]
         string MediaFilename { get; }
+
+        // @property (readonly, copy, nonatomic) NSString * _Nullable memberSid;
+        [NullAllowed, Export("memberSid")]
+        string MemberSid { get; }
+
+        // @property (readonly, copy, nonatomic) TCHMember * _Nullable member;
+        [NullAllowed, Export("member", ArgumentSemantic.Copy)]
+        Member Member { get; }
 
         // @property (readonly, copy, nonatomic) NSString * _Nullable timestamp;
         [NullAllowed, Export("timestamp")]
@@ -299,6 +307,10 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("identity", ArgumentSemantic.Strong)]
         string Identity { get; }
 
+        // @property (readonly, nonatomic) TCHMemberType type;
+        [Export("type")]
+        MemberType Type { get; }
+
         // @property (readonly, copy, nonatomic) NSNumber * _Nullable lastConsumedMessageIndex;
         [NullAllowed, Export("lastConsumedMessageIndex", ArgumentSemantic.Copy)]
         NSNumber LastConsumedMessageIndex { get; }
@@ -310,6 +322,14 @@ namespace Twilio.Chat.iOS
         // @property (readonly, nonatomic, strong) NSDate * _Nullable lastConsumptionTimestampAsDate;
         [NullAllowed, Export("lastConsumptionTimestampAsDate", ArgumentSemantic.Strong)]
         NSDate LastConsumptionTimestampAsDate { get; }
+
+        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        [NullAllowed, Export("attributes")]
+        NSDictionary<NSString, NSObject> Attributes { get; }
+
+        // -(void)setAttributes:(NSDictionary<NSString *,id> * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
+        [Export("setAttributes:completion:")]
+        void SetAttributes([NullAllowed] NSDictionary<NSString, NSObject> attributes, [NullAllowed] Completion completion);
 
         // -(void)userDescriptorWithCompletion:(TCHUserDescriptorCompletion _Nonnull)completion;
         [Export("userDescriptorWithCompletion:")]

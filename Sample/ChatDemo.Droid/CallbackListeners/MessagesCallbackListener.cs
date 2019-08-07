@@ -24,7 +24,7 @@ namespace ChatDemo.Droid
             Logger.Info($"Channel: {channel.Sid}", $"Messages: {result}");
             foreach (Message message in result)
             {
-                Logger.Info($"Channel: {channel.Sid}", $"Got message: {message.Sid} created on {message.DateCreatedAsDate}");
+                Logger.Info($"Channel: {channel.Sid}", $"Got message: {message.Sid} created on {message.DateCreatedAsDate} with type {message.Type} from member {message.MemberSid}");
             };
         }
 

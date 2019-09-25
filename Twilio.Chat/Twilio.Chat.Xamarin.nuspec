@@ -13,7 +13,7 @@
     <tags>twilio chat</tags>
     <iconUrl>https://www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico</iconUrl>
     <projectUrl>https://github.com/twilio/TwilioChatXamarinBindings</projectUrl>
-    <licenseUrl>https://github.com/twilio/TwilioChatXamarinBindings/blob/master/LICENSE.md</licenseUrl>
+    <license type="expression">MIT</license>
     <releaseNotes>Twilio Chat Bindings (using Programmable Chat iOS 2.6.0 and Programmable Chat Android 4.2.0)</releaseNotes>
   </metadata>
   <files>

@@ -3,4 +3,12 @@ install! 'cocoapods', :integrate_targets => false
 target 'ObjectiveSharpieIntegration' do
   use_frameworks!
 end
-pod 'TwilioChatClient', '2.6.0'
+pod 'TwilioChatClient', '2.6.2'
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SUPPORTS_MACCATALYST'] = 'NO'
+    end
+  end
+end

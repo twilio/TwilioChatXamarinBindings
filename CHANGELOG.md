@@ -1,4 +1,10 @@
 # Changelog
+## 0.5.1
+Upgrade to iOS SDK 2.6.2 and Android SDK 4.2.3
+### Twilio Chat libraries versions:
+- [Programmable Chat iOS 2.6.2 (September 20, 2019)](https://www.twilio.com/docs/chat/ios/changelog#programmable-chat-ios-262-september-20-2019)
+- [Programmable Chat Android 4.2.3 (September 25, 2019)](https://www.twilio.com/docs/chat/android/changelog#programmable-chat-android-423-sep-25-2019)
+
 ## 0.5.0
 Upgrade to iOS SDK 2.6.0 and Android SDK 4.2.0
 ### Twilio Chat libraries versions:

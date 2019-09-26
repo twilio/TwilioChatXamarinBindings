@@ -2,32 +2,40 @@
 using ChatDemo.Shared;
 using Foundation;
 using UIKit;
+using UserNotifications;
 using Xamarin.Forms;
 
 namespace ChatDemo.iOS
 {
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, UserNotifications.IUNUserNotificationCenterDelegate
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
 
 
-            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
             {
-                UIApplication.SharedApplication.RegisterUserNotificationSettings(
-                    UIUserNotificationSettings.GetSettingsForTypes(
-                        UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
-                        null));
-                UIApplication.SharedApplication.RegisterForRemoteNotifications();
+                // iOS 10 or later
+                var authOptions = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound;
+                UNUserNotificationCenter.Current.RequestAuthorization(authOptions, (granted, error) => {
+                    Console.WriteLine($"[AppDelegate] UNUserNotificationCenter.Current.RequestAuthorization: { granted }");
+                    if (error != null)
+                    {
+                        Console.WriteLine($"[AppDelegate] UNUserNotificationCenter.Current.RequestAuthorization error: { error.LocalizedDescription }");
+                    }
+                });
+                UNUserNotificationCenter.Current.Delegate = this;
             }
             else
             {
-                UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(
-                    UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound);
+                var allNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound;
+                var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
             }
 
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
             LoadApplication(new App());
 
@@ -36,6 +44,7 @@ namespace ChatDemo.iOS
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
+            Console.WriteLine($"[AppDelegate] RegisteredForRemoteNotifications Got device token { deviceToken.Description}");
             Logger.Info($"AppDelegate", $"RegisteredForRemoteNotifications Got device token {deviceToken.Description}");
             var twilioChatHelper = DependencyService.Get<ITwilioChatHelper>();
             twilioChatHelper.SetDeviceToken(deviceToken);
@@ -44,6 +53,7 @@ namespace ChatDemo.iOS
 
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
         {
+            Console.WriteLine($"[AppDelegate] FailedToRegisterForRemoteNotifications {error.Description}");
             Logger.Error($"AppDelegate", $"FailedToRegisterForRemoteNotifications {error.Description}");
         }
 

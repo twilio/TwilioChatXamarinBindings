@@ -1,3 +1,4 @@
+#!/bin/bash -e 
 # to be able to build you need installed:
 # 1) xamarin itself
 # 2) gradle
@@ -6,7 +7,7 @@
 # 5) sharpie 
 
 # clean
-rm *.nupkg
+rm -f *.nupkg
 
 # clean android build
 MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration=Debug

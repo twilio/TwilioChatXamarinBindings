@@ -3,10 +3,7 @@
     <!--   Messages.LastConsumedMessageIndex should return "long?" (new property declared in Additions/Messages.cs) -->	
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastConsumedMessageIndex' and count(parameter)=0]" name="propertyName"></attr>
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastConsumedMessageIndex' and count(parameter)=0]" name="visibility">private</attr>
-
-    <!--   ChatClient.setLogLevel should accept c#-like enum LogLevel instead of int (new method declared in Additions/ChatClient.cs) --> 
-    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='setLogLevel' and count(parameter)=1 and parameter[1][@type='int']]" name="visibility">private</attr>
-
+    
 	<!--    missing eventName -->
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='addListener']" name="eventName">Channel</attr>
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='setListener']" name="eventName">ChatClient</attr> 

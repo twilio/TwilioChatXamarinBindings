@@ -18,7 +18,12 @@
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Message.Media']" name="managedName">Message.MessageMedia</attr> 
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='NotificationPayload.Type']" name="managedName">NotificationPayload.NotificationPayloadType</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Paginator']" name="managedName">InternalPaginator</attr> 
-    
+
+    <!--    ChatClient :: PushToken make private base class visible -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.PushToken']" name="visibility">public</attr> 
+
+    <attr path="/api/package[@name='com.twilio.chat.internal']/interface[@name='InternalStatusListener']/method[@name='onError']" name="argsType">InternalStatusListenerErrorEventArgs</attr>
+
 	<!--    ChatClient :: CallbackListener generics  -->
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='create' and count(parameter)=4 and parameter[4][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.ChatClient&gt;']]/parameter[4]" 
 	    name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.ChatClient&gt;</attr>

@@ -1,10 +1,13 @@
-#!/bin/bash -e 
+#!/bin/bash
 # to be able to build you need installed:
 # 1) xamarin itself
 # 2) gradle
 # 3) xcode and command line tools 
 # 4) cocoapods
 # 5) sharpie 
+
+# Exit on errors
+set -e
 
 # clean
 rm -f *.nupkg

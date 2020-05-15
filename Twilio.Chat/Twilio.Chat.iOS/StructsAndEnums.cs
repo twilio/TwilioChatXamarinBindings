@@ -12,7 +12,8 @@ namespace Twilio.Chat.iOS
         Connected,
         Connecting,
         Denied,
-        Error
+        Error,
+        FatalError
     }
 
     [Native]

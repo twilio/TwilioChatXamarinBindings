@@ -46,8 +46,10 @@ MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Release
 
 # build ios project
 cd Twilio.Chat.iOS
-sharpie pod bind
+sharpie pod bind # This only binds the framework
+# To update generated bindings, run `sharpie bind -f Pods/TwilioChatClient/TwilioChatClient.framework` manually.
 cd -
+
 MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Debug
 MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Release
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using ObjCRuntime;
 
@@ -126,9 +126,9 @@ namespace Twilio.Chat.iOS
         [Export("publicChannelDescriptorsWithCompletion:")]
         void PublicChannelDescriptorsWithCompletion(ChannelDescriptorPaginatorCompletion completion);
 
-        // -(void)createChannelWithOptions:(NSDictionary<NSString *,id> * _Nonnull)options completion:(TCHChannelCompletion _Nullable)completion;
+        // -(void)createChannelWithOptions:(NSDictionary<NSString *,id> * _Nullable)options completion:(TCHChannelCompletion _Nullable)completion;
         [Export("createChannelWithOptions:completion:")]
-        void CreateChannelWithOptions(NSDictionary<NSString, NSObject> options, [NullAllowed] ChannelCompletion completion);
+        void CreateChannelWithOptions([NullAllowed] NSDictionary<NSString, NSObject> options, [NullAllowed] ChannelCompletion completion);
 
         // -(void)channelWithSidOrUniqueName:(NSString * _Nonnull)sidOrUniqueName completion:(TCHChannelCompletion _Nonnull)completion;
         [Export("channelWithSidOrUniqueName:completion:")]

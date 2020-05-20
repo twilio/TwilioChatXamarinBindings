@@ -125,6 +125,7 @@
     <Compile Include="TwilioChatHelper.cs" />
     <Compile Include="Delegates\TwilioChannelDelegate.cs" />
     <Compile Include="Delegates\TwilioChatDelegate.cs" />
+    <Compile Include="ExtensionHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Twilio.Chat\Twilio.Chat.iOS\Twilio.Chat.iOS.csproj">

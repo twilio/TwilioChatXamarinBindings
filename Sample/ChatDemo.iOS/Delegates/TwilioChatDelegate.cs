@@ -4,6 +4,8 @@ using Twilio.Chat.iOS;
 
 namespace ChatDemo.iOS.Delegates
 {
+    using ExtensionHelpers;
+
     public class TwilioChatDelegate : TwilioChatClientDelegate
     {
         public TwilioChatDelegate()
@@ -27,16 +29,19 @@ namespace ChatDemo.iOS.Delegates
         public override void ChannelAdded(TwilioChatClient client, Channel channel)
         {
             Logger.Info($"ChatClient: {client}", $"ChannelAdded: {channel.Sid}");
+            Logger.Info($"ChatClient: {client}", $"Channel attributes: {channel.Attributes.ToDebugLog()}");
         }
 
         public override void ChannelUpdated(TwilioChatClient client, Channel channel, ChannelUpdate updated)
         {
             Logger.Info($"ChatClient: {client}", $"ChannelUpdated: {channel.Sid}, reason: {updated}");
+            Logger.Info($"ChatClient: {client}", $"Channel attributes: {channel.Attributes.ToDebugLog()}");
         }
 
         public override void ChannelSynchronizationStatusUpdated(TwilioChatClient client, Channel channel, ChannelSynchronizationStatus status)
         {
             Logger.Info($"ChatClient: {client}", $"ChannelSynchronizationStatusUpdated for channel: {channel.Sid}, status: {status}");
+            Logger.Info($"ChatClient: {client}", $"Channel attributes: {channel.Attributes.ToDebugLog()}");
 
             if (status.Equals(ChannelSynchronizationStatus.All) && channel.Status.Equals(ChannelStatus.Joined))
             {
@@ -125,11 +130,16 @@ namespace ChatDemo.iOS.Delegates
         public override void MemberJoined(TwilioChatClient client, Channel channel, Member member)
         {
             Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberJoined: {member.Sid}");
+            Logger.Info($"ChatClient: {client}", $"Member attributes: {member.Attributes.ToDebugLog()}");
         }
 
         public override void MemberUpdated(TwilioChatClient client, Channel channel, Member member, MemberUpdate updated)
         {
             Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MemberUpdated: {member.Sid}, reason: {updated}");
+            if (updated == MemberUpdate.Attributes)
+            {
+                Logger.Info($"ChatClient: {client}", $"Member attributes: {member.Attributes.ToDebugLog()}");
+            }
         }
 
         public override void MemberLeft(TwilioChatClient client, Channel channel, Member member)
@@ -140,11 +150,16 @@ namespace ChatDemo.iOS.Delegates
         public override void MessageAdded(TwilioChatClient client, Channel channel, Message message)
         {
             Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MessageAdded: {message.Sid}");
+            Logger.Info($"ChatClient: {client}", $"Message attributes: {message.Attributes.ToDebugLog()}");
         }
 
         public override void MessageUpdated(TwilioChatClient client, Channel channel, Message message, MessageUpdate updated)
         {
             Logger.Info($"ChatClient: {client}", $"Channel: {channel.Sid} MessageUpdated: {message.Sid}, reason: {updated}");
+            if (updated == MessageUpdate.Attributes)
+            {
+                Logger.Info($"ChatClient: {client}", $"Message attributes: {message.Attributes.ToDebugLog()}");
+            }
         }
 
         public override void MessageDeleted(TwilioChatClient client, Channel channel, Message message)
@@ -206,11 +221,16 @@ namespace ChatDemo.iOS.Delegates
         public override void UserUpdated(TwilioChatClient client, User user, UserUpdate updated)
         {
             Logger.Info($"ChatClient: {client}", $"UserUpdated: {user.Identity}, reason: {updated}");
+            if (updated == UserUpdate.Attributes)
+            {
+                Logger.Info($"ChatClient: {client}", $"User attributes: {user.Attributes.ToDebugLog()}");
+            }
         }
 
         public override void UserSubscribed(TwilioChatClient client, User user)
         {
             Logger.Info($"ChatClient: {client}", $"UserSubscribed: {user.Identity}");
+            Logger.Info($"ChatClient: {client}", $"User attributes: {user.Attributes.ToDebugLog()}");
         }
 
         public override void UserUnsubscribed(TwilioChatClient client, User user)

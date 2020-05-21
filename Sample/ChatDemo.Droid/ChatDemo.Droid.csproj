@@ -250,7 +250,6 @@
     <Compile Include="StatusListeners\RegisterFCMTokenStatusListener.cs" />
     <Compile Include="FCM\FcmMessageBroadcastReceiver.cs" />
     <Compile Include="FCM\FCMService.cs" />
-    <Compile Include="FCM\FirebaseIIDService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

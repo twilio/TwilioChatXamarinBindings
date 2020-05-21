@@ -3,7 +3,6 @@ using Android.Support.V4.Content;
 using ChatDemo.Droid;
 using ChatDemo.Shared;
 using Com.Twilio.Chat;
-using Firebase.Iid;
 
 [assembly: Xamarin.Forms.Dependency(typeof(TwilioChatHelper))]
 namespace ChatDemo.Droid
@@ -153,14 +152,11 @@ namespace ChatDemo.Droid
         public void SetDeviceToken(object token)
         {
             deviceToken = (string) token;
+            // @todo cause it to register for fcm here??
         }
 
         public object GetDeviceToken()
         {
-            if (deviceToken == null) 
-            {
-                deviceToken = FirebaseInstanceId.Instance.Token;
-            }
             return deviceToken;
         }
     }

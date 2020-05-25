@@ -38,13 +38,13 @@ namespace ChatDemo.Droid
                     Logger.Error("Google play services", $"unavailable: {GoogleApiAvailability.Instance.GetErrorString(resultCode)}");
                 else
                 {
-                    Logger.Error($"Google play services", $"unavailable: This device is not supported");
+                    Logger.Error("Google play services", "unavailable: This device is not supported");
                 }
                 return false;
             }
             else
             {
-                Logger.Info($"Google play services", "are available");
+                Logger.Info("Google play services", "are available");
                 return true;
             }
         }

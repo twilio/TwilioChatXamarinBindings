@@ -152,7 +152,12 @@ namespace ChatDemo.Droid
         public void SetDeviceToken(object token)
         {
             deviceToken = (string) token;
-            // @todo cause it to register for fcm here??
+
+            if (this.chatClient != null && deviceToken != null)
+            {
+                Logger.Info("ChatClient", "ChatClientCallbackListener: FCM token: " + deviceToken);
+                this.chatClient.RegisterFCMToken(new ChatClient.FCMToken((string)deviceToken), new StatusListeners.RegisterFCMTokenStatusListener());
+            }
         }
 
         public object GetDeviceToken()

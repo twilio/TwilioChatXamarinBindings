@@ -43,9 +43,6 @@ namespace ChatDemo.Droid
             }
 
             result.Channels.GetPublicChannelsList(new PublicChannelPaginatorCallbackListener(result));
-
-            Logger.Info($"ChatClient: {result}", "ChatClientCallbackListener: FCM token: " + this.twilioChatHelper.GetDeviceToken());
-            result.RegisterFCMToken(new ChatClient.FCMToken((string) this.twilioChatHelper.GetDeviceToken()), new StatusListeners.RegisterFCMTokenStatusListener());
         }
 
         void ChannelSynchronizationChanged(object sender, SynchronizationChangedEventArgs args)

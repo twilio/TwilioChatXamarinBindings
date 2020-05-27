@@ -12,46 +12,57 @@ set -e
 # clean
 rm -f *.nupkg
 
-# clean android build
-MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration=Debug
-MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration=Release
-cd Twilio.Chat.Android
-gradle clean
-rm -rf bin
-cd -
+setupAndroid() {
+    # clean android build
 
-# clean ios build
-MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Debug
-MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Release
-cd Twilio.Chat.iOS
-rm -rf Pods
-rm -rf Binding
-rm -rf bin
-cd -
+    MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration=Debug
+    MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj /t:Clean /p:Configuration=Release
 
-# fetch artifacts for android 
-cd Twilio.Chat.Android
-gradle fetch
-cd -
+    cd Twilio.Chat.Android
 
-# fetch artifacts for ios
-cd Twilio.Chat.iOS
-pod repo update
-pod install
-cd -
+    gradle clean
+    rm -rf bin
 
-# build android project
-MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Debug
-MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Release
+    # fetch artifacts for android 
+    gradle fetch
 
-# build ios project
-cd Twilio.Chat.iOS
-sharpie pod bind # This only binds the framework
-# To update generated bindings, run `sharpie bind -f Pods/TwilioChatClient/TwilioChatClient.framework` manually.
-cd -
+    cd -
 
-MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Debug
-MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Release
+    # build android project
+
+    MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Debug
+    MSBuild Twilio.Chat.Android/Twilio.Chat.Android.csproj  /p:Configuration=Release
+}
+
+setupIos() {
+    # clean ios build
+
+    MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Debug
+    MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj /t:Clean /p:Configuration=Release
+
+    cd Twilio.Chat.iOS
+
+    rm -rf Pods
+    rm -rf Binding
+    rm -rf bin
+
+    # fetch artifacts for ios
+    pod repo update
+    pod install
+
+    # build ios project
+
+    sharpie pod bind # This only binds the framework
+    # To update generated bindings, run `sharpie bind -f Pods/TwilioChatClient/TwilioChatClient.framework` manually.
+
+    cd -
+
+    MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Debug
+    MSBuild Twilio.Chat.iOS/Twilio.Chat.iOS.csproj  /p:Configuration=Release
+}
+
+setupAndroid
+setupIos
 
 # package for nuget
 nuget pack Twilio.Chat.Xamarin.nuspec -Verbosity detailed

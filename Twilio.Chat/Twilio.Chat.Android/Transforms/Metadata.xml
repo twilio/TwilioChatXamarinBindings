@@ -83,4 +83,11 @@
         name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.UserDescriptor&gt;</attr>
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Users']/method[@name='getChannelUserDescriptors' and count(parameter)=2 and parameter[2][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.Paginator&lt;com.twilio.chat.UserDescriptor&gt;&gt;']]/parameter[2]" 
         name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.Paginator&lt;Com.Twilio.Chat.UserDescriptor&gt;&gt;</attr>
+    
+    <!-- Rename Attributes and associated methods -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Attributes']" name="managedName">JsonAttributes</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Attributes']/method[@name='getType']" name="managedName">GetValueType</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Attributes.Type']" name="visibility">public</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Attributes.Type']" name="managedName">JsonAttributes.AttributeType</attr>
+    
 </metadata>

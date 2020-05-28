@@ -63,6 +63,7 @@
     <Compile Include="Additions\Paginator.cs" />
     <Compile Include="Additions\ObjectTypeHelper.cs" />
     <Compile Include="Additions\Messages.cs" />
+    <Compile Include="Additions\JsonAttributes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />

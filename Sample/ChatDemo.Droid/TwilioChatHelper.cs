@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Android.Support.V4.Content;
 using ChatDemo.Droid;
+using ChatDemo.ExtensionHelpers;
 using ChatDemo.Shared;
 using Com.Twilio.Chat;
 
@@ -83,7 +84,13 @@ namespace ChatDemo.Droid
             client.ChannelInvited += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelInvited: {args.Channel.Sid}"); };
             client.ChannelJoined += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelJoined: {args.Channel.Sid}"); };
             client.ChannelSynchronizationChange += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelSynchronizationChange: {args.Channel.Sid}"); };
-            client.ChannelUpdated += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelUpdated: {args.Channel.Sid}, reason: {args.Reason.Name()}"); };
+            client.ChannelUpdated += (sender, args) => {
+                Logger.Info($"ChatClient: {client}", $"ChannelUpdated: {args.Channel.Sid}, reason: {args.Reason.Name()}");
+                if (args.Reason == Channel.UpdateReason.Attributes)
+                {
+                    Logger.Info($"ChatClient: {client}", $"Channel attributes: {args.Channel.Attributes.ToDebugLog()}");
+                }
+            };
 
             client.ClientSynchronization += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ClientSynchronization: {args.Status.Name()}"); };
 
@@ -99,9 +106,18 @@ namespace ChatDemo.Droid
             client.NotificationFailed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationFailed: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
             client.NotificationSubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationSubscribed"); };
 
-            client.UserSubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserSubscribed: {args.User.Identity}"); };
+            client.UserSubscribed += (sender, args) => {
+                Logger.Info($"ChatClient: {client}", $"UserSubscribed: {args.User.Identity}");
+                Logger.Info($"ChatClient: {client}", $"User attributes: {args.User.Attributes.ToDebugLog()}");
+            };
             client.UserUnsubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserUnsubscribed: {args.User.Identity}"); };
-            client.UserUpdated += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserUpdated: {args.User.Identity}, reason: {args.Reason.Name()}"); };
+            client.UserUpdated += (sender, args) => {
+                Logger.Info($"ChatClient: {client}", $"UserUpdated: {args.User.Identity}, reason: {args.Reason.Name()}");
+                if (args.Reason == User.UpdateReason.Attributes)
+                {
+                    Logger.Info($"ChatClient: {client}", $"User attributes: {args.User.Attributes.ToDebugLog()}");
+                }
+            };
 
             client.TokenAboutToExpire += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenAboutToExpire"); };
             client.TokenExpired += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenExpired"); };
@@ -114,6 +130,7 @@ namespace ChatDemo.Droid
             Logger.Info($"Channel: {channel.Sid}", $"Status: { channel.Status.Name() }");
             Logger.Info($"Channel: {channel.Sid}", $"LastConsumedMessageIndex: {channel.Messages.LastConsumedMessageIndex}");
             Logger.Info($"Channel: {channel.Sid}", $"NotificationLevel: {channel.NotificationLevel.Name()}");
+            Logger.Info($"Channel: {channel.Sid}", $"Attributes: {channel.Attributes.ToDebugLog()}");
 
             channel.GetMessagesCount(new MessagesCountCallbackListener(channel));
             channel.GetMembersCount(new MembersCountCallbackListener(channel));
@@ -126,13 +143,31 @@ namespace ChatDemo.Droid
 
             channel.SynchronizationChanged += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"SynchronizationChanged: {args.Channel.SynchronizationStatus.Name()}"); };
 
-            channel.MemberAdded += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MemberAdded: {args.Member.Sid}"); };
+            channel.MemberAdded += (sender, args) => {
+                Logger.Info($"Channel: {channel.Sid}", $"MemberAdded: {args.Member.Sid}");
+                Logger.Info($"Channel: {channel.Sid}", $"Member attributes: {args.Member.Attributes.ToDebugLog()}");
+            };
             channel.MemberDeleted += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MemberDeleted: {args.Member.Sid}"); };
-            channel.MemberUpdated += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MemberUpdated: {args.Member.Sid}, reason: {args.Reason.Name()}"); };
+            channel.MemberUpdated += (sender, args) => {
+                Logger.Info($"Channel: {channel.Sid}", $"MemberUpdated: {args.Member.Sid}, reason: {args.Reason.Name()}");
+                if (args.Reason == Member.UpdateReason.Attributes)
+                {
+                    Logger.Info($"Channel: {channel.Sid}", $"Member attributes: {args.Member.Attributes.ToDebugLog()}");
+                }
+            };
 
-            channel.MessageAdded += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MessageAdded: {args.Message.Sid}"); };
+            channel.MessageAdded += (sender, args) => {
+                Logger.Info($"Channel: {channel.Sid}", $"MessageAdded: {args.Message.Sid}");
+                Logger.Info($"Channel: {channel.Sid}", $"Message attributes: {args.Message.Attributes.ToDebugLog()}");
+            };
             channel.MessageDeleted += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MessageDeleted: {args.Message.Sid}"); };
-            channel.MessageUpdated += (sender, args) => { Logger.Info($"Channel: {channel.Sid}", $"MessageUpdated: {args.Message.Sid}, reason: {args.Reason.Name()}"); };
+            channel.MessageUpdated += (sender, args) => {
+                Logger.Info($"Channel: {channel.Sid}", $"MessageUpdated: {args.Message.Sid}, reason: {args.Reason.Name()}");
+                if (args.Reason == Message.UpdateReason.Attributes)
+                {
+                    Logger.Info($"Channel: {channel.Sid}", $"Message attributes: {args.Message.Attributes.ToDebugLog()}");
+                }
+            };
 
 
             channel.TypingEnded += (sender, args) => { Logger.Info($"Channel: {args.Channel.Sid}", $"TypingEnded: {args.Member.Sid}"); };

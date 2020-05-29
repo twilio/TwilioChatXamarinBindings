@@ -12,7 +12,8 @@ namespace Twilio.Chat.iOS
         Connected,
         Connecting,
         Denied,
-        Error
+        Error,
+        FatalError
     }
 
     [Native]
@@ -114,6 +115,16 @@ namespace Twilio.Chat.iOS
     }
 
     [Native]
+    public enum MemberType : ulong
+    {
+        Unset = 0,
+        Other,
+        Chat,
+        Sms,
+        Whatsapp
+    }
+
+    [Native]
     public enum MessageUpdate : ulong
     {
         Body = 0,
@@ -126,15 +137,4 @@ namespace Twilio.Chat.iOS
         Text = 0,
         Media
     }
-
-    [Native]
-    public enum MemberType : ulong
-    {
-        Unset = 0,
-        Other,
-        Chat,
-        Sms,
-        Whatsapp
-    }
-
 }

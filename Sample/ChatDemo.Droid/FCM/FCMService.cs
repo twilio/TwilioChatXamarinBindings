@@ -6,14 +6,22 @@ using Android.Support.V4.Content;
 using Android.Util;
 using ChatDemo.Shared;
 using Com.Twilio.Chat;
+using Xamarin.Forms;
 using Firebase.Messaging;
 
 namespace ChatDemo.Droid
 {
     [Service]
-    [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
+    [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT", "com.google.firebase.INSTANCE_ID_EVENT" })]
     public class FCMService : FirebaseMessagingService
     {
+        public override void OnNewToken(string refreshedToken)
+        {
+            Logger.ToConsole(new LogLine(LogLine.LogLevel.Info, "FCMService", $"received new device token: {refreshedToken}"));
+            var twilioChatHelper = DependencyService.Get<ITwilioChatHelper>();
+            twilioChatHelper.SetDeviceToken(refreshedToken);
+        }
+
         public override void OnMessageReceived(RemoteMessage message)
         {
             Logger.ToConsole(new LogLine(LogLine.LogLevel.Info, "FCMService", $"received new message: {message}"));

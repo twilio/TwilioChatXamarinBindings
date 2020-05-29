@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using ObjCRuntime;
 
@@ -126,13 +126,71 @@ namespace Twilio.Chat.iOS
         [Export("publicChannelDescriptorsWithCompletion:")]
         void PublicChannelDescriptorsWithCompletion(ChannelDescriptorPaginatorCompletion completion);
 
-        // -(void)createChannelWithOptions:(NSDictionary<NSString *,id> * _Nonnull)options completion:(TCHChannelCompletion _Nullable)completion;
+        // -(void)createChannelWithOptions:(NSDictionary<NSString *,id> * _Nullable)options completion:(TCHChannelCompletion _Nullable)completion;
         [Export("createChannelWithOptions:completion:")]
-        void CreateChannelWithOptions(NSDictionary<NSString, NSObject> options, [NullAllowed] ChannelCompletion completion);
+        void CreateChannelWithOptions([NullAllowed] NSDictionary<NSString, NSObject> options, [NullAllowed] ChannelCompletion completion);
 
         // -(void)channelWithSidOrUniqueName:(NSString * _Nonnull)sidOrUniqueName completion:(TCHChannelCompletion _Nonnull)completion;
         [Export("channelWithSidOrUniqueName:completion:")]
         void ChannelWithSidOrUniqueName(string sidOrUniqueName, ChannelCompletion completion);
+    }
+
+    // @interface TCHJsonAttributes : NSObject
+    [BaseType(typeof(NSObject), Name = "TCHJsonAttributes")]
+    [DisableDefaultCtor]
+    interface JsonAttributes
+    {
+        // -(instancetype _Null_unspecified)initWithDictionary:(NSDictionary * _Nonnull)dictionary;
+        [Export("initWithDictionary:")]
+        JsonAttributes WithDictionary(NSDictionary value);
+
+        // -(instancetype _Null_unspecified)initWithArray:(NSArray * _Nonnull)array;
+        [Export("initWithArray:")]
+        JsonAttributes WithArray(NSObject[] value);
+
+        // -(instancetype _Null_unspecified)initWithString:(NSString * _Nonnull)string;
+        [Export("initWithString:")]
+        JsonAttributes WithString(string value);
+
+        // -(instancetype _Null_unspecified)initWithNumber:(NSNumber * _Nonnull)number;
+        [Export("initWithNumber:")]
+        JsonAttributes WithNumber(NSNumber value);
+
+        // @property (readonly) BOOL isDictionary;
+        [Export("isDictionary")]
+        bool IsDictionary { get; }
+
+        // @property (readonly) BOOL isArray;
+        [Export("isArray")]
+        bool IsArray { get; }
+
+        // @property (readonly) BOOL isString;
+        [Export("isString")]
+        bool IsString { get; }
+
+        // @property (readonly) BOOL isNumber;
+        [Export("isNumber")]
+        bool IsNumber { get; }
+
+        // @property (readonly) BOOL isNull;
+        [Export("isNull")]
+        bool IsNull { get; }
+
+        // @property (readonly) NSDictionary * _Nullable dictionary;
+        [NullAllowed, Export("dictionary")]
+        NSDictionary Dictionary { get; }
+
+        // @property (readonly) NSArray * _Nullable array;
+        [NullAllowed, Export("array")]
+        NSObject[] Array { get; }
+
+        // @property (readonly) NSString * _Nullable string;
+        [NullAllowed, Export("string")]
+        string String { get; }
+
+        // @property (readonly) NSNumber * _Nullable number;
+        [NullAllowed, Export("number")]
+        NSNumber Number { get; }
     }
 
     // @interface TCHMessage : NSObject
@@ -207,13 +265,13 @@ namespace Twilio.Chat.iOS
         [Export("updateBody:completion:")]
         void UpdateBody(string body, [NullAllowed] Completion completion);
 
-        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        // -(TCHJsonAttributes * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
-        NSDictionary<NSString, NSObject> Attributes { get; }
+        JsonAttributes Attributes { get; }
 
-        // -(void)setAttributes:(NSDictionary<NSString *,id> * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
+        // -(void)setAttributes:(TCHJsonAttributes * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
         [Export("setAttributes:completion:")]
-        void SetAttributes([NullAllowed] NSDictionary<NSString, NSObject> attributes, [NullAllowed] Completion completion);
+        void SetAttributes([NullAllowed] JsonAttributes attributes, [NullAllowed] Completion completion);
 
         // -(BOOL)hasMedia;
         [Export("hasMedia")]
@@ -236,10 +294,10 @@ namespace Twilio.Chat.iOS
         [Export("withMediaStream:contentType:defaultFilename:onStarted:onProgress:onCompleted:")]
         MessageOptions WithMediaStream(NSInputStream mediaStream, string contentType, [NullAllowed] string defaultFilename, [NullAllowed] MediaOnStarted onStarted, [NullAllowed] MediaOnProgress onProgress, [NullAllowed] MediaOnCompleted onCompleted);
 
-        // -(instancetype _Nullable)withAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes completion:(TCHCompletion _Nullable)completion;
+        // -(instancetype _Nullable)withAttributes:(TCHJsonAttributes * _Nonnull)attributes completion:(TCHCompletion _Nullable)completion;
         [Export("withAttributes:completion:")]
         [return: NullAllowed]
-        MessageOptions WithAttributes(NSDictionary<NSString, NSObject> attributes, [NullAllowed] Completion completion);
+        MessageOptions WithAttributes(JsonAttributes attributes, [NullAllowed] Completion completion);
     }
 
     // @interface TCHMessages : NSObject
@@ -323,13 +381,13 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("lastConsumptionTimestampAsDate", ArgumentSemantic.Strong)]
         NSDate LastConsumptionTimestampAsDate { get; }
 
-        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        // -(TCHJsonAttributes * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
-        NSDictionary<NSString, NSObject> Attributes { get; }
+        JsonAttributes Attributes { get; }
 
-        // -(void)setAttributes:(NSDictionary<NSString *,id> * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
+        // -(void)setAttributes:(TCHJsonAttributes * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
         [Export("setAttributes:completion:")]
-        void SetAttributes([NullAllowed] NSDictionary<NSString, NSObject> attributes, [NullAllowed] Completion completion);
+        void SetAttributes([NullAllowed] JsonAttributes attributes, [NullAllowed] Completion completion);
 
         // -(void)userDescriptorWithCompletion:(TCHUserDescriptorCompletion _Nonnull)completion;
         [Export("userDescriptorWithCompletion:")]
@@ -373,13 +431,13 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("friendlyName")]
         string FriendlyName { get; }
 
-        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        // -(TCHJsonAttributes * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
-        NSDictionary<NSString, NSObject> Attributes { get; }
+        JsonAttributes Attributes { get; }
 
-        // -(void)setAttributes:(NSDictionary<NSString *,id> * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
+        // -(void)setAttributes:(TCHJsonAttributes * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
         [Export("setAttributes:completion:")]
-        void SetAttributes([NullAllowed] NSDictionary<NSString, NSObject> attributes, [NullAllowed] Completion completion);
+        void SetAttributes([NullAllowed] JsonAttributes attributes, [NullAllowed] Completion completion);
 
         // -(void)setFriendlyName:(NSString * _Nullable)friendlyName completion:(TCHCompletion _Nullable)completion;
         [Export("setFriendlyName:completion:")]
@@ -478,13 +536,13 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("lastMessageIndex", ArgumentSemantic.Strong)]
         NSNumber LastMessageIndex { get; }
 
-        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        // -(TCHJsonAttributes * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
-        NSDictionary<NSString, NSObject> Attributes { get; }
+        JsonAttributes Attributes { get; }
 
-        // -(void)setAttributes:(NSDictionary<NSString *,id> * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
+        // -(void)setAttributes:(TCHJsonAttributes * _Nullable)attributes completion:(TCHCompletion _Nullable)completion;
         [Export("setAttributes:completion:")]
-        void SetAttributes([NullAllowed] NSDictionary<NSString, NSObject> attributes, [NullAllowed] Completion completion);
+        void SetAttributes([NullAllowed] JsonAttributes attributes, [NullAllowed] Completion completion);
 
         // -(void)setFriendlyName:(NSString * _Nullable)friendlyName completion:(TCHCompletion _Nullable)completion;
         [Export("setFriendlyName:completion:")]
@@ -626,9 +684,9 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("dateUpdated", ArgumentSemantic.Strong)]
         NSDate DateUpdated { get; }
 
-        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        // -(TCHJsonAttributes * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
-        NSDictionary<NSString, NSObject> Attributes { get; }
+        JsonAttributes Attributes { get; }
 
         // -(NSUInteger)messagesCount;
         [Export("messagesCount")]
@@ -710,9 +768,9 @@ namespace Twilio.Chat.iOS
         [NullAllowed, Export("friendlyName")]
         string FriendlyName { get; }
 
-        // -(NSDictionary<NSString *,id> * _Nullable)attributes;
+        // -(TCHJsonAttributes * _Nullable)attributes;
         [NullAllowed, Export("attributes")]
-        NSDictionary<NSString, NSObject> Attributes { get; }
+        JsonAttributes Attributes { get; }
 
         // -(BOOL)isOnline;
         [Export("isOnline")]

@@ -1,4 +1,5 @@
 ﻿using ChatDemo.Droid;
+using ChatDemo.ExtensionHelpers;
 using ChatDemo.Shared;
 using Com.Twilio.Chat;
 
@@ -36,7 +37,9 @@ namespace ChatDemo.Droid
 
     internal class PublicChannelCallbackListener : CallbackListener<Channel>
     {
-        public override void OnSuccess(Channel result) => Logger.Info($"ChannelDescriptor: {result.Sid}", $"Got public channel from descriptor: {result.Sid}");
+        public override void OnSuccess(Channel result) {
+            Logger.Info($"ChannelDescriptor: {result.Sid}", $"Got public channel from descriptor: {result.Sid}");
+            Logger.Info($"ChannelDescriptor: {result.Sid}", $"attributes: {result.Attributes.ToDebugLog()}");
+        }
     }
-
 }

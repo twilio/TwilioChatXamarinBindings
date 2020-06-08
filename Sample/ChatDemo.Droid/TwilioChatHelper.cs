@@ -65,10 +65,13 @@ namespace ChatDemo.Droid
         {
             this.chatClient = null;
             ChatClient.SetLogLevel(ChatClient.LogLevel.Info);
+            var properties = new ChatClient.ClientProperties.Builder()
+                .SetCommandTimeout(ChatClient.ClientProperties.MinCommandTimeout)
+                .CreateProperties();
             ChatClient.Create(
                 Android.App.Application.Context,
                 chatToken,
-                (new ChatClient.ClientProperties.Builder()).CreateProperties(),
+                properties,
                 new ChatClientCallbackListener(this)
             );
         }

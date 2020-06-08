@@ -137,4 +137,12 @@ namespace Twilio.Chat.iOS
         Text = 0,
         Media
     }
+
+    [Native]
+    public enum CommandTimeout : ulong
+    {
+        Min = 10000,
+        Max = 2147483647,
+        Default = 90000
+    }
 }

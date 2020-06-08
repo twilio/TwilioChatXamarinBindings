@@ -887,6 +887,10 @@ namespace Twilio.Chat.iOS
         // @property (copy, nonatomic) NSString * _Nonnull region;
         [Export("region")]
         string Region { get; set; }
+
+        // @property (assign, nonatomic) NSInteger commandTimeout;
+        [Export("commandTimeout")]
+        ulong CommandTimeout { get; set; }
     }
 
     // @protocol TwilioChatClientDelegate <NSObject>

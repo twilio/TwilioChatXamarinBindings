@@ -60,8 +60,10 @@ namespace ChatDemo.iOS
         {
             this.twilioChatClient = null;
             TwilioChatClient.LogLevel = LogLevel.Info;
+            var properties = new TwilioChatClientProperties();
+            properties.CommandTimeout = (ulong)CommandTimeout.Min;
             TwilioChatClient.ChatClientWithToken(
-                chatToken, new TwilioChatClientProperties(), this, (result, chatClient) =>
+                chatToken, properties, this, (result, chatClient) =>
                 {
                     if (result.IsSuccessful)
                     {

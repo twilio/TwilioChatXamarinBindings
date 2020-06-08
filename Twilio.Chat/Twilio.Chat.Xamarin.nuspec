@@ -11,7 +11,8 @@
     <summary>Twilio Programmable Chat makes it easy for you to add chat features into your mobile applications without building or scaling a real-time backend</summary>
     <copyright>Copyright © Twilio</copyright>
     <tags>twilio chat</tags>
-    <icon>https://www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico</icon>
+    <icon>images\twilio-logo.png</icon>
+    <iconUrl>https://www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico</iconUrl>
     <projectUrl>https://github.com/twilio/TwilioChatXamarinBindings</projectUrl>
     <license type="expression">MIT</license>
     <releaseNotes>Twilio Chat Bindings (using Programmable Chat iOS 3.1.1 and Programmable Chat Android 5.1.1)</releaseNotes>
@@ -23,6 +24,8 @@
     
      <!-- iOS -->
      <file src="./Twilio.Chat.iOS/bin/Release/Twilio.Chat.iOS.*" target="lib/Xamarin.iOS" />
+
+     <file src="./twilio-logo.png" target="images\" />
 
    </files>
 </package>

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Twilio.Chat.Xamarin</id>
-    <version>0.7.0</version>
+    <version>0.7.1</version>
     <title>Twilio Programmable Chat for Xamarin</title>
     <authors>Twilio</authors>
     <owners>rtd-sdk-xamarin, twilio</owners>
@@ -17,7 +17,9 @@
     <license type="expression">MIT</license>
     <releaseNotes>Twilio Chat Bindings (using Programmable Chat iOS 3.1.1 and Programmable Chat Android 5.1.1)</releaseNotes>
     <dependencies>
-      <dependency id="Com.Getkeepsafe.Relinker" version="1.3.1" />
+      <group targetFramework="monoandroid">
+        <dependency id="Com.Getkeepsafe.Relinker" version="1.3.1" />
+      </group>
     </dependencies>
   </metadata>
   <files>

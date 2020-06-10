@@ -1,4 +1,7 @@
 # Changelog
+## 0.7.1
+Fix Android ReLinker dependency.
+
 ## 0.7.0
 Upgrade to iOS SDK 3.1.1 and Android SDK 5.1.1
 ### Twilio Chat libraries versions:

@@ -98,7 +98,7 @@ Global
 		{79EEF79C-0D72-43B1-B0D5-35BEBDA18368} = {48A71AEF-2F4B-4EE6-81D1-AC44FF967F79}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 0.7.0
+		version = 0.7.1
 		description = Twilio Programmable Chat for Xamarin
 		Policies = $0
 		$0.DotNetNamingPolicy = $1

@@ -17,7 +17,7 @@ namespace ChatDemo.iOS
 
         public event LogLineEventHandler LogLine;
 
-        private TwilioChatClient twilioChatClient;
+        private TwilioChatClient chatClient;
 
         protected virtual void OnLogLine(LogLineEventArgs e)
         {
@@ -36,11 +36,11 @@ namespace ChatDemo.iOS
             if (result.IsSuccessful)
             {
                 Logger.Info(
-                    $"ChatClient: {twilioChatClient}",
+                    $"ChatClient: {chatClient}",
                     $"Processing next page of public channel descriptors... (has next page: {channelDescriptorPaginator.HasNextPage})");
                 foreach (ChannelDescriptor item in channelDescriptorPaginator.Items)
                 {
-                    Logger.Info($"ChatClient: {twilioChatClient}", $"public channel SID: {item.Sid}");
+                    Logger.Info($"ChatClient: {chatClient}", $"public channel SID: {item.Sid}");
                 }
                 if (channelDescriptorPaginator.HasNextPage)
                 {
@@ -49,7 +49,7 @@ namespace ChatDemo.iOS
             }
             else
             {
-                Logger.Error($"ChatClient: {twilioChatClient}",
+                Logger.Error($"ChatClient: {chatClient}",
                              $"Error: {result.Error}, " +
                              $"code: {result.ResultCode}, " +
                              $"text: {result.ResultText}");
@@ -58,7 +58,7 @@ namespace ChatDemo.iOS
 
         public void CreateClient(string chatToken)
         {
-            this.twilioChatClient = null;
+            this.chatClient = null;
             TwilioChatClient.LogLevel = LogLevel.Info;
             var properties = new TwilioChatClientProperties();
             properties.CommandTimeout = (ulong)CommandTimeout.Min;
@@ -69,7 +69,7 @@ namespace ChatDemo.iOS
                     {
                         Logger.Info("TwilioChatHelper", "Client created");
                         this.RegisterForNotificationsFromTwilioChatService(chatClient);
-                        this.twilioChatClient = chatClient;
+                        this.chatClient = chatClient;
                         chatClient.ChannelsList
                                             .PublicChannelDescriptorsWithCompletion(HandleChannelDescriptorPaginatorCompletion);
                     }
@@ -99,9 +99,9 @@ namespace ChatDemo.iOS
         public void SetDeviceToken(object token)
         {
             this.deviceToken = (NSData) token;
-            if (this.twilioChatClient != null)
+            if (this.chatClient != null)
             {
-                this.RegisterForNotificationsFromTwilioChatService(this.twilioChatClient);
+                this.RegisterForNotificationsFromTwilioChatService(this.chatClient);
             }
         }
 

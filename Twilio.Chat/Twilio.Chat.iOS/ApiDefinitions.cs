@@ -137,7 +137,6 @@ namespace Twilio.Chat.iOS
 
     // @interface TCHJsonAttributes : NSObject
     [BaseType(typeof(NSObject), Name = "TCHJsonAttributes")]
-    [DisableDefaultCtor]
     interface JsonAttributes
     {
         // -(instancetype _Null_unspecified)initWithDictionary:(NSDictionary * _Nonnull)dictionary;

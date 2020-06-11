@@ -202,5 +202,10 @@ namespace ChatDemo.Droid
         {
             return deviceToken;
         }
+
+        public void CreateChannel(string friendlyName)
+        {
+            this.chatClient.Channels.CreateChannel(friendlyName, Channel.ChannelType.Private, new CreateChannelCallbackListener());
+        }
     }
 }

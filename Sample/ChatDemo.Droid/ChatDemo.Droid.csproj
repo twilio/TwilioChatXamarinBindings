@@ -19,7 +19,7 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <ReleaseVersion>0.7.1</ReleaseVersion>
+    <ReleaseVersion>0.7.2</ReleaseVersion>
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -253,6 +253,8 @@
     <Compile Include="FCM\FcmMessageBroadcastReceiver.cs" />
     <Compile Include="FCM\FCMService.cs" />
     <Compile Include="ExtensionHelpers.cs" />
+    <Compile Include="CallbackListeners\CreateChannelCallbackListener.cs" />
+    <Compile Include="StatusListeners\SetAttributesStatusListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

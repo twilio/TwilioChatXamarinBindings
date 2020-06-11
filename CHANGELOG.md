@@ -1,4 +1,7 @@
 # Changelog
+## 0.7.2
+Allow constructing iOS JsonAttributes, simplify CreateChannel call to accept just NSDictionary.
+
 ## 0.7.1
 Fix Android ReLinker dependency.
 

@@ -14,6 +14,8 @@ namespace ChatDemo
 
         void SetDeviceToken(object token);
         object GetDeviceToken();
+
+        void CreateChannel(string friendlyName);
     }
 
     public delegate void LogLineEventHandler(object sender, LogLineEventArgs e);

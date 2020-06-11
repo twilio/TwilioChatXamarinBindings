@@ -13,7 +13,7 @@
     <RootNamespace>ChatDemo.iOS</RootNamespace>
     <AssemblyName>ChatDemo.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <ReleaseVersion>0.7.1</ReleaseVersion>
+    <ReleaseVersion>0.7.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>

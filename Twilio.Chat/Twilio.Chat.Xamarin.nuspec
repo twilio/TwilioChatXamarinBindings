@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Twilio.Chat.Xamarin</id>
-    <version>0.7.1</version>
+    <version>0.7.2</version>
     <title>Twilio Programmable Chat for Xamarin</title>
     <authors>Twilio</authors>
     <owners>rtd-sdk-xamarin, twilio</owners>

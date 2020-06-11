@@ -128,7 +128,7 @@ namespace Twilio.Chat.iOS
 
         // -(void)createChannelWithOptions:(NSDictionary<NSString *,id> * _Nullable)options completion:(TCHChannelCompletion _Nullable)completion;
         [Export("createChannelWithOptions:completion:")]
-        void CreateChannelWithOptions([NullAllowed] NSDictionary<NSString, NSObject> options, [NullAllowed] ChannelCompletion completion);
+        void CreateChannelWithOptions([NullAllowed] NSDictionary options, [NullAllowed] ChannelCompletion completion);
 
         // -(void)channelWithSidOrUniqueName:(NSString * _Nonnull)sidOrUniqueName completion:(TCHChannelCompletion _Nonnull)completion;
         [Export("channelWithSidOrUniqueName:completion:")]

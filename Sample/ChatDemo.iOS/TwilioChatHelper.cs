@@ -72,6 +72,8 @@ namespace ChatDemo.iOS
                         this.chatClient = chatClient;
                         chatClient.ChannelsList
                                             .PublicChannelDescriptorsWithCompletion(HandleChannelDescriptorPaginatorCompletion);
+
+                        CreateChannel(System.Guid.NewGuid().ToString());
                     }
                     else
                     {
@@ -130,6 +132,20 @@ namespace ChatDemo.iOS
                         }
                     });
             };
+        }
+
+        public void CreateChannel(string friendlyName)
+        {
+            NSDictionary dict = new NSDictionary("key", "value");
+            var attributes = new JsonAttributes().WithDictionary(dict);
+
+            var options = new NSDictionary(
+                Constants.ChannelOptionFriendlyName, NSObject.FromObject(friendlyName),
+                Constants.ChannelOptionAttributes, NSObject.FromObject(attributes));
+
+            this.chatClient.ChannelsList.CreateChannelWithOptions(options, (Result result, Channel channel) => {
+                Logger.Info($"TwilioChatHelper", $"Created channel with attributes and sid {channel.Sid}");
+            });
         }
     }
 }

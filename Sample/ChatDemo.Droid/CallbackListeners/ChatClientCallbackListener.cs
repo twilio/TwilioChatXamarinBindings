@@ -43,6 +43,8 @@ namespace ChatDemo.Droid
             }
 
             result.Channels.GetPublicChannelsList(new PublicChannelPaginatorCallbackListener(result));
+
+            this.twilioChatHelper.CreateChannel(System.Guid.NewGuid().ToString());
         }
 
         void ChannelSynchronizationChanged(object sender, SynchronizationChangedEventArgs args)

@@ -253,6 +253,8 @@
     <Compile Include="FCM\FcmMessageBroadcastReceiver.cs" />
     <Compile Include="FCM\FCMService.cs" />
     <Compile Include="ExtensionHelpers.cs" />
+    <Compile Include="CallbackListeners\CreateChannelCallbackListener.cs" />
+    <Compile Include="StatusListeners\SetAttributesStatusListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

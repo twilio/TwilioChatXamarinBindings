@@ -1,4 +1,5 @@
-﻿using Android.Content;
+﻿using System;
+using Android.Content;
 using Android.Support.V4.Content;
 using ChatDemo.Droid;
 using ChatDemo.ExtensionHelpers;
@@ -8,6 +9,59 @@ using Com.Twilio.Chat;
 [assembly: Xamarin.Forms.Dependency(typeof(TwilioChatHelper))]
 namespace ChatDemo.Droid
 {
+    public class ChatClientListener : Java.Lang.Object, IChatClientListener
+    {
+        private readonly ChatClient parent;
+
+        public ChatClientListener(ChatClient parent) => this.parent = parent;
+
+        public void OnAddedToChannelNotification(string channelSid) => this.AddedToChannelNotification(parent, new AddedToChannelNotificationEventArgs(channelSid));
+        public void OnChannelAdded(Channel channel) => this.ChannelAdded(parent, new ChannelAddedEventArgs(channel));
+        public void OnChannelDeleted(Channel p0) => this.ChannelDeleted(parent, new ChannelDeletedEventArgs(p0));
+        public void OnChannelInvited(Channel p0) => this.ChannelInvited(parent, new ChannelInvitedEventArgs(p0));
+        public void OnChannelJoined(Channel p0) => this.ChannelJoined(parent, new ChannelJoinedEventArgs(p0));
+        public void OnChannelSynchronizationChange(Channel p0) => this.ChannelSynchronizationChange(parent, new ChannelSynchronizationChangeEventArgs(p0));
+        public void OnChannelUpdated(Channel p0, Channel.UpdateReason p1) => this.ChannelUpdated(parent, new ChannelUpdatedEventArgs(p0, p1));
+        public void OnClientSynchronization(ChatClient.SynchronizationStatus p0) => this.ClientSynchronization(parent, new ClientSynchronizationEventArgs(p0));
+        public void OnConnectionStateChange(ChatClient.ClientConnectionState p0) => this.ConnectionStateChange(parent, new ConnectionStateChangeEventArgs(p0));
+        public void OnError(ErrorInfo p0) => this.Error(parent, new ErrorEventArgs(p0));
+        public void OnInvitedToChannelNotification(string p0) => this.InvitedToChannelNotification(parent, new InvitedToChannelNotificationEventArgs(p0));
+        public void OnNewMessageNotification(string p0, string p1, long p2) => this.NewMessageNotification(parent, new NewMessageNotificationEventArgs(p0, p1, p2));
+        public void OnNotificationFailed(ErrorInfo p0) => this.NotificationFailed(parent, new NotificationFailedEventArgs(p0));
+        public void OnNotificationSubscribed() => this.NotificationSubscribed(parent, null);
+        public void OnRemovedFromChannelNotification(string p0) => this.RemovedFromChannelNotification(parent, new RemovedFromChannelNotificationEventArgs(p0));
+        public void OnTokenAboutToExpire() => this.TokenAboutToExpire(parent, null);
+        public void OnTokenExpired() => this.TokenExpired(parent, null);
+        public void OnUserSubscribed(User p0) => this.UserSubscribed(parent, new UserSubscribedEventArgs(p0));
+        public void OnUserUnsubscribed(User p0) => this.UserUnsubscribed(parent, new UserUnsubscribedEventArgs(p0));
+        public void OnUserUpdated(User p0, User.UpdateReason p1) => this.UserUpdated(parent, new UserUpdatedEventArgs(p0, p1));
+
+        public EventHandler<ChannelSynchronizationChangeEventArgs> ChannelSynchronizationChange;
+        public EventHandler<ClientSynchronizationEventArgs> ClientSynchronization;
+        public EventHandler<ConnectionStateChangeEventArgs> ConnectionStateChange;
+        public EventHandler<ErrorEventArgs> Error;
+
+        public EventHandler<ChannelAddedEventArgs> ChannelAdded;
+        public EventHandler<ChannelDeletedEventArgs> ChannelDeleted;
+        public EventHandler<ChannelInvitedEventArgs> ChannelInvited;
+        public EventHandler<ChannelJoinedEventArgs> ChannelJoined;
+        public EventHandler<ChannelUpdatedEventArgs> ChannelUpdated;
+
+        public EventHandler NotificationSubscribed;
+        public EventHandler<NotificationFailedEventArgs> NotificationFailed;
+        public EventHandler<NewMessageNotificationEventArgs> NewMessageNotification;
+        public EventHandler<AddedToChannelNotificationEventArgs> AddedToChannelNotification;
+        public EventHandler<InvitedToChannelNotificationEventArgs> InvitedToChannelNotification;
+        public EventHandler<RemovedFromChannelNotificationEventArgs> RemovedFromChannelNotification;
+
+        public EventHandler TokenAboutToExpire;
+        public EventHandler TokenExpired;
+
+        public EventHandler<UserSubscribedEventArgs> UserSubscribed;
+        public EventHandler<UserUnsubscribedEventArgs> UserUnsubscribed;
+        public EventHandler<UserUpdatedEventArgs> UserUpdated;
+    }
+
     public partial class TwilioChatHelper : ITwilioChatHelper
     {
         private string deviceToken;
@@ -15,6 +69,7 @@ namespace ChatDemo.Droid
         private TokenProvider tokenProvider;
 
         private Com.Twilio.Chat.ChatClient chatClient;
+        private ChatClientListener delegateForwarder;
 
         private FcmMessageBroadcastReceiver fcmMessageBroadcastReceiver;
 
@@ -76,18 +131,21 @@ namespace ChatDemo.Droid
             );
         }
 
-        public void SubscribeToClientEvents(ChatClient client)
+        public void SubscribeToClientEvents()
         {
-            client.ChannelAdded += (sender, args) => { this.SubscribeToChannelEvents(args.Channel); };
-            client.ChannelInvited += (sender, args) => { this.SubscribeToChannelEvents(args.Channel); };
-            client.ChannelJoined += (sender, args) => { this.SubscribeToChannelEvents(args.Channel); };
+            var client = this.chatClient;
+            this.delegateForwarder = new ChatClientListener(this.chatClient);
 
-            client.ChannelAdded += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelAdded: {args.Channel.Sid}"); };
-            client.ChannelDeleted += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelDeleted: {args.Channel.Sid}"); };
-            client.ChannelInvited += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelInvited: {args.Channel.Sid}"); };
-            client.ChannelJoined += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelJoined: {args.Channel.Sid}"); };
-            client.ChannelSynchronizationChange += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelSynchronizationChange: {args.Channel.Sid}"); };
-            client.ChannelUpdated += (sender, args) => {
+            this.delegateForwarder.ChannelAdded += (sender, args) => { this.SubscribeToChannelEvents(args.Channel); };
+            this.delegateForwarder.ChannelInvited += (sender, args) => { this.SubscribeToChannelEvents(args.Channel); };
+            this.delegateForwarder.ChannelJoined += (sender, args) => { this.SubscribeToChannelEvents(args.Channel); };
+
+            this.delegateForwarder.ChannelAdded += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelAdded: {args.Channel.Sid}"); };
+            this.delegateForwarder.ChannelDeleted += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelDeleted: {args.Channel.Sid}"); };
+            this.delegateForwarder.ChannelInvited += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelInvited: {args.Channel.Sid}"); };
+            this.delegateForwarder.ChannelJoined += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelJoined: {args.Channel.Sid}"); };
+            this.delegateForwarder.ChannelSynchronizationChange += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ChannelSynchronizationChange: {args.Channel.Sid}"); };
+            this.delegateForwarder.ChannelUpdated += (sender, args) => {
                 Logger.Info($"ChatClient: {client}", $"ChannelUpdated: {args.Channel.Sid}, reason: {args.Reason.Name()}");
                 if (args.Reason == Channel.UpdateReason.Attributes)
                 {
@@ -95,26 +153,26 @@ namespace ChatDemo.Droid
                 }
             };
 
-            client.ClientSynchronization += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ClientSynchronization: {args.Status.Name()}"); };
+            this.delegateForwarder.ClientSynchronization += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ClientSynchronization: {args.Status.Name()}"); };
 
-            client.ConnectionStateChange += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ConnectionStateChange: {args.State.Name()}"); };
+            this.delegateForwarder.ConnectionStateChange += (sender, args) => { Logger.Info($"ChatClient: {client}", $"ConnectionStateChange: {args.State.Name()}"); };
 
-            client.Error += (sender, args) => { Logger.Info($"ChatClient: {client}", $"Error: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
+            this.delegateForwarder.Error += (sender, args) => { Logger.Info($"ChatClient: {client}", $"Error: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
 
-            client.NewMessageNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NewMessageNotification: ChannelSid: {args.ChannelSid}, MessageSid: {args.MessageSid}"); };
-            client.AddedToChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"AddedToChannelNotification: ChannelSid: {args.ChannelSid}"); };
-            client.InvitedToChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"InvitedToChannelNotification: ChannelSid: {args.ChannelSid}"); };
-            client.RemovedFromChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"RemovedFromChannelNotification: ChannelSid: {args.ChannelSid}"); };
-                  
-            client.NotificationFailed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationFailed: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
-            client.NotificationSubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationSubscribed"); };
+            this.delegateForwarder.NewMessageNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NewMessageNotification: ChannelSid: {args.ChannelSid}, MessageSid: {args.MessageSid}"); };
+            this.delegateForwarder.AddedToChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"AddedToChannelNotification: ChannelSid: {args.ChannelSid}"); };
+            this.delegateForwarder.InvitedToChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"InvitedToChannelNotification: ChannelSid: {args.ChannelSid}"); };
+            this.delegateForwarder.RemovedFromChannelNotification += (sender, args) => { Logger.Info($"ChatClient: {client}", $"RemovedFromChannelNotification: ChannelSid: {args.ChannelSid}"); };
 
-            client.UserSubscribed += (sender, args) => {
+            this.delegateForwarder.NotificationFailed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationFailed: {args.ErrorInfo.Message}, code: {args.ErrorInfo.Code}, status: {args.ErrorInfo.Status}"); };
+            this.delegateForwarder.NotificationSubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"NotificationSubscribed"); };
+
+            this.delegateForwarder.UserSubscribed += (sender, args) => {
                 Logger.Info($"ChatClient: {client}", $"UserSubscribed: {args.User.Identity}");
                 Logger.Info($"ChatClient: {client}", $"User attributes: {args.User.Attributes.ToDebugLog()}");
             };
-            client.UserUnsubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserUnsubscribed: {args.User.Identity}"); };
-            client.UserUpdated += (sender, args) => {
+            this.delegateForwarder.UserUnsubscribed += (sender, args) => { Logger.Info($"ChatClient: {client}", $"UserUnsubscribed: {args.User.Identity}"); };
+            this.delegateForwarder.UserUpdated += (sender, args) => {
                 Logger.Info($"ChatClient: {client}", $"UserUpdated: {args.User.Identity}, reason: {args.Reason.Name()}");
                 if (args.Reason == User.UpdateReason.Attributes)
                 {
@@ -122,8 +180,8 @@ namespace ChatDemo.Droid
                 }
             };
 
-            client.TokenAboutToExpire += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenAboutToExpire"); };
-            client.TokenExpired += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenExpired"); };
+            this.delegateForwarder.TokenAboutToExpire += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenAboutToExpire"); };
+            this.delegateForwarder.TokenExpired += (sender, args) => { Logger.Info($"ChatClient: {client}", $"TokenExpired"); };
         }
 
         public void SubscribeToChannelEvents(Channel channel)

@@ -25,7 +25,7 @@ namespace ChatDemo.Droid
             Logger.Info($"ChatClient: {result}", $"Got ChatClient instance: {result}");
             Logger.Info($"ChatClient: {result}", $"ChatClient initialized with identity {result.MyIdentity}");
 
-            this.twilioChatHelper.SubscribeToClientEvents(result);
+            this.twilioChatHelper.SubscribeToClientEvents();
 
             var subscribedChannels = result.Channels.GetSubscribedChannelsSortedBy(Channels.SortCriterion.LastMessage, Channels.SortOrder.Descending);
             foreach (Channel channel in subscribedChannels)

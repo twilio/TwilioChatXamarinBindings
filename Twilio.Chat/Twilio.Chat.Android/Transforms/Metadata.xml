@@ -1,14 +1,78 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <!--   Messages.LastConsumedMessageIndex should return "long?" (new property declared in Additions/Messages.cs) -->	
+
+    <!-- ChannelListener : rename Event args -->
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMemberAdded']/parameter[@name='p0']" name="name">member</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMemberDeleted']/parameter[@name='p0']" name="name">member</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMemberUpdated']/parameter[@name='p0']" name="name">member</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMemberUpdated']/parameter[@name='p1']" name="name">reason</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMessageAdded']/parameter[@name='p0']" name="name">message</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMessageDeleted']/parameter[@name='p0']" name="name">message</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMessageUpdated']/parameter[@name='p0']" name="name">message</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onMessageUpdated']/parameter[@name='p1']" name="name">reason</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onSynchronizationChanged']/parameter[@name='p0']" name="name">channel</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onTypingStarted']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onTypingStarted']/parameter[@name='p1']" name="name">member</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onTypingEnded']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChannelListener']/method[@name='onTypingEnded']/parameter[@name='p1']" name="name">member</attr>
+
+    <!-- ChatClientListener : rename Event args -->
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onAddedToChannelNotification']/parameter[@name='p0']" name="name">channelSid</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelAdded']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelDeleted']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelInvited']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelJoined']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelSynchronizationChange']/parameter[@name='p0']" name="name">channel</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelUpdated']/parameter[@name='p0']" name="name">channel</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onChannelUpdated']/parameter[@name='p1']" name="name">reason</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onClientSynchronization']/parameter[@name='p0']" name="name">status</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onConnectionStateChange']/parameter[@name='p0']" name="name">state</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onError']/parameter[@name='p0']" name="name">errorInfo</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onInvitedToChannelNotification']/parameter[@name='p0']" name="name">channelSid</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onNewMessageNotification']/parameter[@name='p0']" name="name">channelSid</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onNewMessageNotification']/parameter[@name='p1']" name="name">messageSid</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onNewMessageNotification']/parameter[@name='p2']" name="name">messageIndex</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onNotificationFailed']/parameter[@name='p0']" name="name">errorInfo</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onRemovedFromChannelNotification']/parameter[@name='p0']" name="name">channelSid</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onUserSubscribed']/parameter[@name='p0']" name="name">user</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onUserUnsubscribed']/parameter[@name='p0']" name="name">user</attr>
+
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onUserUpdated']/parameter[@name='p0']" name="name">user</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/interface[@name='ChatClientListener']/method[@name='onUserUpdated']/parameter[@name='p1']" name="name">reason</attr>
+
+    <!-- Internal status listener : rename Event args -->
+    <attr path="/api/package[@name='com.twilio.chat.internal']/interface[@name='InternalStatusListener']/method[@name='onError']" name="argsType">InternalStatusListenerErrorEventArgs</attr>
+    <attr path="/api/package[@name='com.twilio.chat.internal']/interface[@name='InternalStatusListener']/method[@name='onError']/parameter[@name='p0']" name="name">errorInfo</attr>
+
+    <!-- ProgressListener : rename Event args -->
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ProgressListener']/method[@name='onCompleted']/parameter[@name='p0']" name="name">mediaSid</attr>
+    <attr path="/api/package[@name='com.twilio.chat']/class[@name='ProgressListener']/method[@name='onProgress']/parameter[@name='p0']" name="name">bytes</attr>
+
+    <!-- Messages.LastConsumedMessageIndex should return "long?" (new property declared in Additions/Messages.cs) -->	
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastConsumedMessageIndex' and count(parameter)=0]" name="propertyName"></attr>
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='Messages']/method[@name='getLastConsumedMessageIndex' and count(parameter)=0]" name="visibility">private</attr>
     
 	<!--    missing eventName -->
-    <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='addListener']" name="eventName">Channel</attr>
+    <!-- <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='addListener']" name="eventName">Channel</attr>
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='setListener']" name="eventName">ChatClient</attr> 
+     -->
 
-    <!--    resolve class naming and generated property naming conflicts-->
+    <!-- Rename classes to avoid generated property name conflicts-->
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.ConnectionState']" name="managedName">ChatClient.ClientConnectionState</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.Properties']" name="managedName">ChatClient.ClientProperties</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel.SynchronizationStatus']" name="managedName">Channel.ChannelSynchronizationStatus</attr> 
@@ -19,16 +83,14 @@
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='NotificationPayload.Type']" name="managedName">NotificationPayload.NotificationPayloadType</attr> 
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Paginator']" name="managedName">InternalPaginator</attr> 
 
-    <!--    ChatClient :: PushToken make private base class visible -->
+    <!-- ChatClient :: PushToken make private base class visible -->
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient.PushToken']" name="visibility">public</attr> 
 
-    <attr path="/api/package[@name='com.twilio.chat.internal']/interface[@name='InternalStatusListener']/method[@name='onError']" name="argsType">InternalStatusListenerErrorEventArgs</attr>
-
-	<!--    ChatClient :: CallbackListener generics  -->
+	<!-- ChatClient :: CallbackListener generics  -->
 	<attr path="/api/package[@name='com.twilio.chat']/class[@name='ChatClient']/method[@name='create' and count(parameter)=4 and parameter[4][@type='com.twilio.chat.CallbackListener&lt;com.twilio.chat.ChatClient&gt;']]/parameter[4]" 
 	    name="managedType">Com.Twilio.Chat.CallbackListener&lt;Com.Twilio.Chat.ChatClient&gt;</attr>
 
-	<!--    Channel :: CallbackListener generics  -->
+	<!-- Channel :: CallbackListener generics  -->
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='getMembersCount' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 
         name="managedType">Com.Twilio.Chat.CallbackListener&lt;long&gt;</attr>
     <attr path="/api/package[@name='com.twilio.chat']/class[@name='Channel']/method[@name='getMessagesCount' and count(parameter)=1 and parameter[1][@type='com.twilio.chat.CallbackListener&lt;java.lang.Long&gt;']]/parameter[1]" 

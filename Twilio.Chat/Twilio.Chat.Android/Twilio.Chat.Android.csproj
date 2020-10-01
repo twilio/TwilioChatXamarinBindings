@@ -64,6 +64,7 @@
     <Compile Include="Additions\ObjectTypeHelper.cs" />
     <Compile Include="Additions\Messages.cs" />
     <Compile Include="Additions\JsonAttributes.cs" />
+    <Compile Include="Additions\Channel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />

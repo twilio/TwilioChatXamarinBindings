@@ -9,6 +9,7 @@ Twilio.Chat/Twilio.Chat.Android/obj
 Twilio.Common/Twilio.Common.Android/obj
 Twilio.Common/Twilio.Common.Android/bin
 *.nupkg
+mono_crash.*
 Twilio.Chat/.gradle
 chat-android.aar
 Twilio.Chat/Twilio.Chat.Android/Javadoc
@@ -22,4 +23,5 @@ Twilio.Chat/Twilio.Chat.Android/.gradle
 Sample/ChatDemo.iOS/certificates
 UserPrefs.xml
 .vs/TwilioChatXamarinBindings/xs
+.idea/
 google-services.json

@@ -76,24 +76,12 @@ namespace ChatDemo.iOS.Delegates
                                      $"text: {result.ResultText}");
                     }
                 });
-                channel.Members.MembersWithCompletion((result, members) =>
+
+                var members = channel.Members.MembersList;
+                foreach (Member member in members)
                 {
-                    if (result.IsSuccessful)
-                    {
-                        Logger.Info($"Channel: {channel.Sid}", $"Members: {result}");
-                        foreach (Member member in members.Items)
-                        {
-                            Logger.Info($"Channel: {channel.Sid}", $"Got member: {member.Sid} with type {member.Type}");
-                        };
-                    }
-                    else
-                    {
-                        Logger.Error($"Channel: {channel.Sid}",
-                                     $"Error: {result.Error}, " +
-                                     $"code: {result.ResultCode}, " +
-                                     $"text: {result.ResultText}");
-                    }
-                });
+                    Logger.Info($"Channel: {channel.Sid}", $"Got member: {member.Sid} with type {member.Type}");
+                };
 
                 channel.Messages.GetLastMessagesWithCount(10, (result, messages) =>
                 {
@@ -102,7 +90,7 @@ namespace ChatDemo.iOS.Delegates
                         Logger.Info($"Channel: {channel.Sid}", $"Messages: {result}");
                         foreach (Message message in messages)
                         {
-                            Logger.Info($"Channel: {channel.Sid}", $"Got message: {message.Sid} created on {message.TimestampAsDate} with type {message.Type} from member {message.MemberSid}");
+                            Logger.Info($"Channel: {channel.Sid}", $"Got message: {message.Sid} created on {message.DateCreatedAsDate} with type {message.Type} from member {message.MemberSid}");
                         };
                     }
                     else

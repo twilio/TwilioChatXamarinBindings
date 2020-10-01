@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ObjCRuntime;
 
 namespace Twilio.Chat.iOS
@@ -28,7 +28,7 @@ namespace Twilio.Chat.iOS
     [Native]
     public enum LogLevel : ulong
     {
-		Silent = 0,
+        Silent = 0,
         Fatal,
         Critical,
         Warning,
@@ -44,7 +44,7 @@ namespace Twilio.Chat.iOS
         LastConsumedMessageIndex,
         UniqueName,
         FriendlyName,
-		Attributes,
+        Attributes,
         LastMessage,
         UserNotificationLevel
     }
@@ -75,7 +75,6 @@ namespace Twilio.Chat.iOS
         Private
     }
 
-
     [Native]
     public enum ChannelNotificationLevel : ulong
     {
@@ -92,7 +91,7 @@ namespace Twilio.Chat.iOS
     }
 
     [Native]
-	public enum ChannelSortingOrder : ulong
+    public enum ChannelSortingOrder : ulong
     {
         Ascending = 0,
         Descending
@@ -111,7 +110,8 @@ namespace Twilio.Chat.iOS
     public enum MemberUpdate : ulong
     {
         LastConsumedMessageIndex = 0,
-        Attributes = 1
+        LastConsumptionTimestamp,
+        Attributes
     }
 
     [Native]

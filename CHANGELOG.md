@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0
+
+Upgrade to iOS SDK 4.0.2 and Android SDK 6.2.0
+
+### BREAKING CHANGE
+
+### Twilio Chat libraries versions:
+
+- [Programmable Chat iOS 4.0.2 (November 13, 2020)](https://www.twilio.com/docs/chat/ios/changelog#programmable-chat-ios-402-november-13-2020)
+- [Programmable Chat Android 6.2.0 (November 20, 2020)](https://www.twilio.com/docs/chat/android/changelog#programmable-chat-android-620-nov-20-2020)
+
 ## 0.7.2
 
 Allow constructing iOS JsonAttributes, simplify CreateChannel call to accept just NSDictionary.

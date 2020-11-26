@@ -6,8 +6,7 @@ namespace ChatDemo.Droid
 {
     public class MessagesCountCallbackListener : CallbackListener<long>
     {
-
-        private Channel channel;
+        private readonly Channel channel;
 
         public MessagesCountCallbackListener(Channel channel)
         {

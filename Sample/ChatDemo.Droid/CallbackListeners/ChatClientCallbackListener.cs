@@ -6,7 +6,7 @@ namespace ChatDemo.Droid
 {
     public class ChatClientCallbackListener : CallbackListener<ChatClient>
     {
-        private TwilioChatHelper twilioChatHelper;
+        private readonly TwilioChatHelper twilioChatHelper;
 
         public ChatClientCallbackListener(TwilioChatHelper twilioChatHelper)
         {

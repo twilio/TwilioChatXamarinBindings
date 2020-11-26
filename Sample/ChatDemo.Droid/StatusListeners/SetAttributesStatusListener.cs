@@ -6,7 +6,8 @@ namespace ChatDemo.Droid.StatusListeners
 {
     public class SetAttributesStatusListener : Com.Twilio.Chat.StatusListener
     {
-        private Channel channel;
+        private readonly Channel channel;
+
         public SetAttributesStatusListener(Channel channel)
         {
             this.channel = channel;

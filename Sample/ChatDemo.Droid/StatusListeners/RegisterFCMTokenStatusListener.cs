@@ -7,9 +7,6 @@ namespace ChatDemo.Droid.StatusListeners
     {
         public override void OnError(Com.Twilio.Chat.ErrorInfo errorInfo) => Logger.Error("RegisterFCMTokenStatusListener", errorInfo);
 
-        public override void OnSuccess()
-        {
-            Logger.Info("RegisterFCMTokenStatusListener", "Success");
-        }
+        public override void OnSuccess() => Logger.Info("RegisterFCMTokenStatusListener", "Success");
     }
 }

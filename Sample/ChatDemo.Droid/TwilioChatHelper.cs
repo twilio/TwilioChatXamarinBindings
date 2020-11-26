@@ -77,16 +77,10 @@ namespace ChatDemo.Droid
 
         protected virtual void OnLogLine(LogLineEventArgs e)
         {
-            if (LogLine != null)
-            {
-                LogLine(this, e);
-            }
+            LogLine?.Invoke(this, e);
         }
 
-        public void FireLogLineEvent(LogLine logLine)
-        {
-            OnLogLine(new LogLineEventArgs(logLine));
-        }
+        public void FireLogLineEvent(LogLine logLine) => OnLogLine(new LogLineEventArgs(logLine));
 
         public TwilioChatHelper()
         {

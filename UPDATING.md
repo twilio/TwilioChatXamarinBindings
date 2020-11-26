@@ -35,6 +35,7 @@ Steps to update Xamarin bindings for the new version of Android and/or iOS SDKs.
 ## Tricky parts
 
 * Android bindings are generated using XML remapping files, `Metadata.xml`, `EnumFields.xml` and `EnumMethods.xml` – this is largely empirical, trial-and-error and is pretty badly documented. See past commits for an idea what could be done. Validate with the demo app that your changes actually work - it could compile and then just crash at runtime with no backtrace, so don't do many large changes at once.
+* IMPORTANT: For Android look in obj/{Debug,Release}/api.xml - it contains all the mapping that you could transform using Metadata.xml et al from above. Use http://xpather.com/ to validate paths against api.xml file.
 * iOS Bindings are usually easier to process because they are pre-generated and you could modify them to your liking afterwards - see `ApiDefinitions.cs` and `StructsAndEnums.cs`. Conversion tool will generate `[Verify]` annotations that break compilation but in most cases can be just safely deleted. Read compiler output on those - it's usually helpful.
 
 ## Useful links

@@ -82,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="Jars\chat-android.aar" />
+    <EmbeddedReferenceJar Include="Jars\nv-websocket-client.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.1\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.1\build\NuGet.Build.Packaging.targets')" />

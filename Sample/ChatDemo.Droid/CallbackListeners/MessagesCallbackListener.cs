@@ -6,8 +6,7 @@ namespace ChatDemo.Droid
 {
     public class MessagesCallbackListener : CallbackListener<System.Collections.Generic.IList<Message>>
     {
-
-        private Channel channel;
+        private readonly Channel channel;
 
         public MessagesCallbackListener(Channel channel)
         {

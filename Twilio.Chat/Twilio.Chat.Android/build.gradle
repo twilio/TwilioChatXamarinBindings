@@ -1,6 +1,9 @@
 apply plugin : 'java'
 
-def chatAndroidVersion = '5.1.1'
+def chatAndroidVersion = '6.2.0'
+def nvWebsocketVersion = '2.10' // Keep in sync with Chat version above
+def okHttpVersion = '3.12.12' // Keep in sync with Chat version above
+def okioVersion = '1.15.0' // Keep in sync with OkHttp version above
 
 repositories {
     jcenter()
@@ -9,6 +12,7 @@ repositories {
 configurations {
     aar
     docs
+    sources
 }
 
 configurations.all {
@@ -17,7 +21,11 @@ configurations.all {
 
 dependencies {
     aar group: 'com.twilio', name:'chat-android', version: "$chatAndroidVersion"
+    aar group: 'com.neovisionaries', name: 'nv-websocket-client', version: "$nvWebsocketVersion"
+    aar group: 'com.squareup.okhttp3', name: 'okhttp', version:  "$okHttpVersion"
+    aar group: 'com.squareup.okio', name: 'okio', version:  "$okioVersion"
     docs group: 'com.twilio', name:'chat-android', classifier: 'javadoc', version: "$chatAndroidVersion"
+    sources group: 'com.twilio', name:'chat-android', classifier: 'sources', version: "$chatAndroidVersion"
 }
 
 clean() {
@@ -25,9 +33,16 @@ clean() {
 }
 
 task copyAndRenameAar(type: Copy) {
-    from file(configurations.aar.singleFile)
+    from files(configurations.aar)
     into 'Jars'
-    rename { 'chat-android.aar' }
+    // Strip off version numbers from aars/jars
+    rename { String filename ->
+        filename
+            .replace("-$chatAndroidVersion", "")
+            .replace("-$nvWebsocketVersion", "")
+            .replace("-$okHttpVersion", "")
+            .replace("-$okioVersion", "")
+    }
 }
 
 task copyAndExtractJavaDoc(type: Copy) {
@@ -36,8 +51,9 @@ task copyAndExtractJavaDoc(type: Copy) {
 }
 
 task allDeps(type: DependencyReportTask) {
-    configurations = [project.configurations.aar, project.configurations.docs]
+    configurations = [project.configurations.aar, project.configurations.docs, project.configurations.sources]
 }
+
 task fetch(){
     dependsOn clean
     dependsOn allDeps

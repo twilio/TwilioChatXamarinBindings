@@ -16,7 +16,7 @@ Steps to update Xamarin bindings for the new version of Android and/or iOS SDKs.
 
 * Update Twilio SDK versions in dependencies. See [this commit](https://github.com/twilio/TwilioChatXamarinBindings/commit/ac23edbadd55953e9ba8ea42c6dbbc277fb1e81e) for a list of places that need to be updated.
 * Run `Twilio.Chat/nugetBuildAndPack.sh` for the first time. It will most certainly fail and in the next steps we will fix it:
-* In `/Applications/Xcode.app/Contents/Developer/Platform/iPhoneOS.platform/Developer/SDKs/` set up a symlink with the version that `sharpie` compains about. It usually looks like `"iphoneos13.4 sdk is required but not installed. You might need to update Xcode"`. Just take a symlink with iOS SDK version LARGER than what it asks for and make a copy with appropriate version number, that will shut it up.
+* In `/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/` set up a symlink with the version that `sharpie` compains about. It usually looks like `"iphoneos13.4 sdk is required but not installed. You might need to update Xcode"`. Just take a symlink with iOS SDK version LARGER than what it asks for and make a copy with appropriate version number, that will shut it up.
 * Run `sharpie bind -f Pods/TwilioChatClient/TwilioChatClient.framework` from the `Twilio.Chat/Twilio.Chat.iOS` folder. This will update the iOS bindings. It usually generates some unnecessary garbage - clean it up.
 * Run `Twilio.Chat/nugetBuildAndPack.sh` again. This should now succeed and generate you a nuget package.
 * Consume it via the demo app solution in Visual Studio - you can run both ios and android simulators from the studio, and play around with the app.
@@ -34,7 +34,8 @@ Steps to update Xamarin bindings for the new version of Android and/or iOS SDKs.
 
 ## Tricky parts
 
-* Android bindings are generated using XML remapping files, `Metadata.xml`, `EnumFields.xml` and `EnumMethods.xml` – this is largely empyrical, trial-and-error and is pretty badly documented. See past commits for an idea what could be done. Validate with the demo app that your changes actually work - it could compile and then just crash at runtime with no backtrace, so don't do many large changes at once.
+* Android bindings are generated using XML remapping files, `Metadata.xml`, `EnumFields.xml` and `EnumMethods.xml` – this is largely empirical, trial-and-error and is pretty badly documented. See past commits for an idea what could be done. Validate with the demo app that your changes actually work - it could compile and then just crash at runtime with no backtrace, so don't do many large changes at once.
+* IMPORTANT: For Android look in obj/{Debug,Release}/api.xml - it contains all the mapping that you could transform using Metadata.xml et al from above. Use http://xpather.com/ to validate paths against api.xml file.
 * iOS Bindings are usually easier to process because they are pre-generated and you could modify them to your liking afterwards - see `ApiDefinitions.cs` and `StructsAndEnums.cs`. Conversion tool will generate `[Verify]` annotations that break compilation but in most cases can be just safely deleted. Read compiler output on those - it's usually helpful.
 
 ## Useful links

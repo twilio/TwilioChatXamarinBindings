@@ -1,5 +1,7 @@
 # Twilio Chat Xamarin Bindings
 
+NB: For Conversations bindings see this 3rd party package: [jedusei/Twilio.Conversations.Xamarin](https://github.com/jedusei/Twilio.Conversations.Xamarin)
+
 [![NuGet version (Twilio.Chat.Xamarin)](https://img.shields.io/nuget/v/Twilio.Chat.Xamarin.svg)](https://www.nuget.org/packages/Twilio.Chat.Xamarin/)
 
 This repo holds Xamarin project to create Twilio Chat Bindings for Xamarin apps (Android and iOS) and Sample projects for Android and iOS to demonstrate how it can be used. The bindings itself are published ot [NuGet.org](https://www.nuget.org/) with name [Twilio.Chat.Xamarin](https://www.nuget.org/packages/Twilio.Chat.Xamarin/)
